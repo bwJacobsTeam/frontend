@@ -3,9 +3,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path='/' component={Login} />
+        <Route path='/register-form' component={Register} />
+      </div>
+    </Router>
   );
 }
 
