@@ -1,25 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from './store/actions/index';
-import { Link } from 'react-router-dom';
+import { registerOrg } from './store/actions/index';
 
-const Login = props => {
-    const [form, setForm] = React.useState({ email: '', password: '' });
+const RegisterOrg = props => {
+    const [form, setForm] = React.useState({ organization_name: '', email: '', password: '' });
 
     const handleChanges = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const login = e => {
+    const regOrg = e => {
         e.preventDefault();
-        props.loginUser(form);
-        setForm({ email: '', password: '' });
+        props.registerOrg(form);
+        setForm({ organization_name: '', email: '', password: '' });
         props.history.push('/');
     };
 
     return (
         <div>
-            <form onSubmit={login}>
+            <h1>Register Now!</h1>
+            <form onSubmit={regOrg}>
+                <input
+                    required
+                    type='text'
+                    name='organization_name'
+                    placeholder='Organization Name'
+                    onChange={handleChanges}
+                    value={form.organization_name} />
                 <input
                     required
                     type='email'
@@ -34,11 +41,8 @@ const Login = props => {
                     placeholder='Password'
                     onChange={handleChanges}
                     value={form.password} />
-                <button type='submit'>Log In</button>
+                <button type='submit'>Submit</button>
             </form>
-            <div>
-                <p>Don't have an account yet? <Link to='register-form'>Sign Up!</Link>/</p>
-            </div>
         </div>
     );
 };
@@ -51,4 +55,4 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { loginUser })(Login);
+    { registerOrg })(RegisterOrg);

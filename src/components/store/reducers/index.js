@@ -1,12 +1,12 @@
-import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE } from "../actions";
+import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, REGISTER_ORG_START, REGISTER_ORG_SUCCESS, REGISTER_ORG_FAILURE, REGISTER_SUPP_START, REGISTER_SUPP_SUCCESS, REGISTER_SUPP_FAILURE } from "../actions";
 
 const initialState = {
     'Organization': [
         {
-            organization_name: '',
-            email: '',
-            password: '',
-            id: ''
+            organization_name: 'Animals',
+            email: 'animals@animals.com',
+            password: 'animals',
+            id: '1'
         }
     ],
     'Supporter': [
@@ -20,7 +20,11 @@ const initialState = {
     ],
     currentUser: {},
     isLoggingIn: false,
-    loggingInErr: ''
+    loggingInErr: '',
+    orgRegistering: false,
+    orgRegisteringErr: '',
+    suppRegistering: false,
+    suppRegisteringErr: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +45,40 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isLoggingIn: false,
                 loggingInErr: action.payload
+            }
+        case REGISTER_ORG_START:
+            return {
+                ...state,
+                orgRegistering: true
+            }
+        case REGISTER_ORG_SUCCESS:
+            return {
+                ...state,
+                orgRegistering: false,
+                currentUser: action.payload
+            }
+        case REGISTER_ORG_FAILURE:
+            return {
+                ...state,
+                suppRegistering: false,
+                suppRegisteringErr: action.payload
+            }
+        case REGISTER_SUPP_START:
+            return {
+                ...state,
+                suppRegistering: true
+            }
+        case REGISTER_SUPP_SUCCESS:
+            return {
+                ...state,
+                suppRegistering: false,
+                currentUser: action.payload
+            }
+        case REGISTER_SUPP_FAILURE:
+            return {
+                ...state,
+                suppRegistering: false,
+                suppRegisteringErr: action.payload
             }
 
         default:

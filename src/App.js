@@ -1,4 +1,8 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Login from './components/Login';
+import RegisterOrg from './components/Register';
+
 import './App.css';
 
 function App() {
@@ -6,7 +10,7 @@ function App() {
     <Router>
       <div className="App">
         <Route exact path='/' component={Login} />
-        <Route path='/register-form' component={Register} />
+        <Route path='/register-form' component={RegisterOrg} />
       </div>
     </Router>
   );
