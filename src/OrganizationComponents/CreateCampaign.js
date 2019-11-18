@@ -1,11 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const FormWrapper = styled.div`
+    border: 2px solid red;
+    display: flex;
+`
 
 const CreateCampaign = () => {
     return (
         <div>
             <h1>Create a new campaign</h1>
             <h3>Name your campaign and funding target</h3>
-            <form>
+            <FormWrapper>
                 <label htmlFor='campaign'>Campaign title</label>
                 <input
                     id='campaign'
@@ -48,7 +54,7 @@ const CreateCampaign = () => {
                     placeholder='Calendar selector'
                 />
                 <button type='submit'>Save campaign</button>
-            </form>
+            </FormWrapper>
         </div>
     )
 }
