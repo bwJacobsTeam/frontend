@@ -39,7 +39,7 @@ const CreateCampaign = () => {
                     <option value='medium'>Medium</option>
                     <option value='low'>Low</option>
                 </select>
-                <label htmlFor='donation' >Donation goal</label>
+                <label htmlFor='donation'>Donation goal</label>
                 <input
                     id='donation'
                     type='number'
