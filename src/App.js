@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
 import './App.css';
+import './OrganizationComponents/Organization';
+import Organization from './OrganizationComponents/Organization';
+import CreateCampaign from './OrganizationComponents/CreateCampaign'
+import SupporterList from './SupporterComponents/SupporterList';
+import CampaignList from './OrganizationComponents/CampaignList';
+import OrganzationNavigation from './OrganizationComponents/OrganizationNavigation';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <OrganzationNavigation />
+      <Route exact path='/Organization' component={Organization} />
+      <Route exact path='/CampaignList' component={CampaignList} />
+      <Route exact path='/CreateCampaign' component={CreateCampaign} />
+      <Route exact path='/Supporter' component={SupporterList} />
+      {/* <SupporterList /> --> will route to seperate Supporter page based on their login */}
     </div>
   );
 }
