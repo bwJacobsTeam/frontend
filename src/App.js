@@ -1,5 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Login from './components/Login';
+import RegisterOrg from './components/Register';
+
 import './App.css';
 import './OrganizationComponents/Organization';
 import Organization from './OrganizationComponents/Organization';
@@ -10,14 +13,18 @@ import OrganzationNavigation from './OrganizationComponents/OrganizationNavigati
 
 function App() {
   return (
-    <div className="App">
-      <OrganzationNavigation />
-      <Route exact path='/Organization' component={Organization} />
-      <Route exact path='/CampaignList' component={CampaignList} />
-      <Route exact path='/CreateCampaign' component={CreateCampaign} />
-      <Route exact path='/Supporter' component={SupporterList} />
-      {/* <SupporterList /> --> will route to seperate Supporter page based on their login */}
-    </div>
+    <Router>
+      <div className="App">
+        <OrganzationNavigation />
+        <Route exact path='/' component={Login} />
+        <Route path='/register-form' component={RegisterOrg} />
+        <Route exact path='/Organization' component={Organization} />
+        <Route exact path='/CampaignList' component={CampaignList} />
+        <Route exact path='/CreateCampaign' component={CreateCampaign} />
+        <Route exact path='/Supporter' component={SupporterList} />
+      </div>
+    </Router>
+
   );
 }
 
