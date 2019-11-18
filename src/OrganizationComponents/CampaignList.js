@@ -1,9 +1,12 @@
-import React from 'React';
+import React from 'react';
+import OrganzationNavigation from './OrganizationNavigation';
+
 
 const CampaignList = () => {
     return (
         <div>
-            <h1>Displays a list of all current campaigns</h1>
+            <OrganzationNavigation />
+            <h1>Current Campaign --> Displays list of all current campaigns</h1>
         </div>
     )
 }

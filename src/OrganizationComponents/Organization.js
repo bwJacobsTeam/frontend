@@ -1,9 +1,10 @@
 import React from 'react';
+import CampaignList from './CampaignList';
 
 const Organization = () => {
     return (
         <div>
-            <h1>Organization component --> Displays Current Campaigns and Create Campaign</h1>
+            <CampaignList />
         </div>
     )
 }

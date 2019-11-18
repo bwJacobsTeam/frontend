@@ -3,7 +3,7 @@ import React from 'react';
 const SupporterList = () => {
     return (
         <div>
-            <h1>Displays all current campaigns to supporters</h1>
+            <h1>SupporterList.js component: Displays all current campaigns to supporters</h1>
         </div>
     )
 }
