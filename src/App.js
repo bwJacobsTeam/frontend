@@ -11,15 +11,12 @@ import OrganzationNavigation from './OrganizationComponents/OrganizationNavigati
 function App() {
   return (
     <div className="App">
-      {/* Organization holds all the organzation components */}
-      {/* SupporterList hold all supporter components */}
-      {/* <Organization />
-      <SupporterList /> */}
       <OrganzationNavigation />
       <Route exact path='/Organization' component={Organization} />
       <Route exact path='/CampaignList' component={CampaignList} />
       <Route exact path='/CreateCampaign' component={CreateCampaign} />
       <Route exact path='/Supporter' component={SupporterList} />
+      {/* <SupporterList /> --> will route to seperate Supporter page based on their login */}
     </div>
   );
 }
