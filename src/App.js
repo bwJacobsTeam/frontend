@@ -9,8 +9,10 @@ import Organization from './OrganizationComponents/Organization';
 import CreateCampaign from './OrganizationComponents/CreateCampaign'
 import SupporterList from './SupporterComponents/SupporterList';
 import CampaignList from './OrganizationComponents/CampaignList';
+import Campaign from './OrganizationComponents/Campaign';
 import OrganzationNavigation from './OrganizationComponents/OrganizationNavigation';
 import PrivateRoute from './components/routes/PrivateRoute';
+import SupporterDonation from './SupporterComponents/SupporterDonation';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path='/CampaignList' component={CampaignList} />
           <Route path='/CreateCampaign' component={CreateCampaign} />
           <Route path='/Supporter' component={SupporterList} />
+          <Route path='/Campaign' component={Campaign} />
+          <Route path='/Donation' component={SupporterDonation} />
         </Switch>
       </div>
     </Router>
