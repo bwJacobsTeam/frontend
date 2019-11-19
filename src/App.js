@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Login from './components/Login';
-import RegisterOrg from './components/Register';
+// import Login from './components/Login';
+// import RegisterOrg from './components/Register';
 
 import './App.css';
 import './OrganizationComponents/Organization';
@@ -16,8 +16,8 @@ function App() {
     <Router>
       <div className="App">
         <OrganzationNavigation />
-        <Route exact path='/' component={Login} />
-        <Route path='/register-form' component={RegisterOrg} />
+        {/* <Route exact path='/' component={Login} /> */}
+        {/* <Route path='/register-form' component={RegisterOrg} /> */}
         <Route exact path='/Organization' component={Organization} />
         <Route exact path='/CampaignList' component={CampaignList} />
         <Route exact path='/CreateCampaign' component={CreateCampaign} />
