@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Campaign from './Campaign';
-
+import SupporterDonation from '../SupporterComponents/SupporterDonation';
 
 const ButtonView = styled.button`
     width: 15%;
@@ -12,7 +11,7 @@ const ButtonView = styled.button`
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    background: #2196f3;
+    background: dodgerblue;
     color: #FFF;  
 `
 const LinkStyle = styled(Link)`
@@ -30,20 +29,21 @@ const LinkStyle = styled(Link)`
 //     organization_id: 1,
 // },
 
-const CampaignCard = (props) => {
+const SupporterCard = (props) => {
 
-    const { campaign_title, description, location, donation_goal } = props.campaign;
+    const { campaign_title, description, location, donation_goal } = props.support;
     return (
-        <LinkStyle to={'/Campaign'} >
+        <LinkStyle to={'/Donation'} >
             < div >
-                <h3>{campaign_title}</h3>
-                <h4>{description}</h4>
-                <p>Location:  {location}</p>
-                <p>Donation goal:  {donation_goal}</p>
+                <h2>Supporter Cards list</h2>
+                <h3>Supporter{campaign_title}</h3>
+                <h4>Supporter {description}</h4>
+                <p>Supporter Location:  {location}</p>
+                <p>Supporter Donation goal:  {donation_goal}</p>
                 <ButtonView>View campaign</ButtonView>
             </div >
         </LinkStyle >
     )
 }
 
-export default CampaignCard;
+export default SupporterCard;

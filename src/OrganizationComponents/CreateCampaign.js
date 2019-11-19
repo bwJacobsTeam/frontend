@@ -12,7 +12,7 @@ const FormWrapper = styled.div`
 
 const FormContainer = styled.div`
     /* border: 2px solid blue; */
-    margin: 5% 0;
+    margin: 2% 0;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -27,7 +27,6 @@ const TextInput = styled.input`
     font-size: 1rem;
     padding: 0 2%;
     border: 2px solid lightgrey;
-
 `
 const SelectInput = styled.select`
     /* border: 1px solid red; */
@@ -52,7 +51,7 @@ const CreateButton = styled.button`
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    background: dodgerblue;
+    background: #2196f3;
     color: #FFF;
 `
 
@@ -75,7 +74,7 @@ const CreateCampaign = () => {
                     <Label htmlFor='description'>Description</Label>
                     <TextInput
                         id='description'
-                        type='text'
+                        type='textarea'
                         name='description'
                         placeholder='Description'
                     />
