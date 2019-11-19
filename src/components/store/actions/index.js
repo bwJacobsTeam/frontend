@@ -12,7 +12,6 @@ export const loginUser = (form) => dispatch => {
         .then(res => {
             console.log('login res', res);
             localStorage.setItem('Authorization', res.data.token);
-            localStorage.setItem('role', res.data.role);
             dispatch({ type: LOGIN_USER_SUCCESS, payload: res.data })
         })
         .catch(err => {
@@ -33,6 +32,7 @@ export const registerUser = (form) => dispatch => {
         .then(res => {
             console.log('register res', res);
             localStorage.setItem('token', res.data.payload);
+            localStorage.setItem('role', res.data.role);
             dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data })
         })
         .catch(err => {

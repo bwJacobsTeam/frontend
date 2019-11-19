@@ -14,7 +14,7 @@ const Login = props => {
         e.preventDefault();
         props.loginUser(form);
         setForm({ email: '', password: '' });
-        localStorage.getItem('role') === 'organization' ?
+        localStorage.getItem('role') && localStorage.getItem('role') === 'organization' ?
             props.history.push('/Organization') : props.history.push('/Supporter');
     };
 

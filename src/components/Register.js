@@ -52,6 +52,7 @@ const Register = props => {
                     <p>I am a:</p>
                     <label> Supporter
                         <input
+                            required
                             type='radio'
                             name='role'
                             onChange={handleChanges}
@@ -60,6 +61,7 @@ const Register = props => {
                     </label>
                     <label>Organization
                         <input
+                            required
                             type='radio'
                             name='role'
                             onChange={handleChanges}
