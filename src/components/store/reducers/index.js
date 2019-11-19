@@ -1,30 +1,21 @@
-import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, REGISTER_ORG_START, REGISTER_ORG_SUCCESS, REGISTER_ORG_FAILURE, REGISTER_SUPP_START, REGISTER_SUPP_SUCCESS, REGISTER_SUPP_FAILURE } from "../actions";
+import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, REGISTER_USER_START, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE } from "../actions";
 
 const initialState = {
-    'Organization': [
-        {
-            organization_name: 'Animals',
-            email: 'animals@animals.com',
-            password: 'animals',
-            id: '1'
-        }
-    ],
-    'Supporter': [
+    'User': [
         {
             first_name: 'Eric',
             last_name: 'Richards',
             email: 'er@gmail.com',
             password: 'password',
+            role: 'supporter',
             id: '0'
         }
     ],
     currentUser: {},
     isLoggingIn: false,
     loggingInErr: '',
-    orgRegistering: false,
-    orgRegisteringErr: '',
-    suppRegistering: false,
-    suppRegisteringErr: ''
+    isRegistering: false,
+    registeringErr: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,39 +37,22 @@ const reducer = (state = initialState, action) => {
                 isLoggingIn: false,
                 loggingInErr: action.payload
             }
-        case REGISTER_ORG_START:
+        case REGISTER_USER_START:
             return {
                 ...state,
-                orgRegistering: true
+                isRegistering: true
             }
-        case REGISTER_ORG_SUCCESS:
+        case REGISTER_USER_SUCCESS:
             return {
                 ...state,
-                orgRegistering: false,
+                isRegistering: false,
                 currentUser: action.payload
             }
-        case REGISTER_ORG_FAILURE:
+        case REGISTER_USER_FAILURE:
             return {
                 ...state,
-                suppRegistering: false,
-                suppRegisteringErr: action.payload
-            }
-        case REGISTER_SUPP_START:
-            return {
-                ...state,
-                suppRegistering: true
-            }
-        case REGISTER_SUPP_SUCCESS:
-            return {
-                ...state,
-                suppRegistering: false,
-                currentUser: action.payload
-            }
-        case REGISTER_SUPP_FAILURE:
-            return {
-                ...state,
-                suppRegistering: false,
-                suppRegisteringErr: action.payload
+                isRegistering: false,
+                registeringErr: action.payload
             }
 
         default:

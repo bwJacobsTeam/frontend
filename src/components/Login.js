@@ -38,7 +38,7 @@ const Login = props => {
                 <button type='submit'>Log In</button>
             </form>
             <div>
-                <p>Don't have an account yet? <Link to='user-router'>Sign Up!</Link></p>
+                <p>Don't have an account yet? <Link to='register'>Sign Up!</Link></p>
             </div>
         </div>
     );
