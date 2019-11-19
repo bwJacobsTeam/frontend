@@ -2,25 +2,56 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FormWrapper = styled.div`
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    width: 40%;
+    width: 50%;
     padding: 3% 0;
     margin: auto;
 `
 
 const FormContainer = styled.div`
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     margin: 5% 0;
-    padding: 0 10%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;    
 `
 const TextInput = styled.input`
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    margin: 0 3%;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0 2%;
+    border: 2px solid lightgrey;
+
 `
 const SelectInput = styled.select`
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    margin: 0 3%;
+    height: 40px;
+    width: 100%;
+    border: 2px solid lightgrey;
+`
+const Label = styled.label`
+    /* border: 1px solid green; */
+    width: 27%;
+    display: flex;
+`
+
+const CreateButton = styled.button`
+    width: 80%;
+    height: 50px;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background: dodgerblue;
+    color: #FFF;
 `
 
 const CreateCampaign = () => {
@@ -30,7 +61,7 @@ const CreateCampaign = () => {
             <h3>Name your campaign and funding target</h3>
             <FormWrapper>
                 <FormContainer>
-                    <label htmlFor='campaign'>Campaign title</label>
+                    <Label htmlFor='campaign'>Campaign title</Label>
                     <TextInput
                         id='campaign'
                         type='text'
@@ -39,7 +70,7 @@ const CreateCampaign = () => {
                     />
                 </FormContainer>
                 <FormContainer>
-                    <label htmlFor='description'>Description</label>
+                    <Label htmlFor='description'>Description</Label>
                     <TextInput
                         id='description'
                         type='text'
@@ -48,7 +79,7 @@ const CreateCampaign = () => {
                     />
                 </FormContainer>
                 <FormContainer>
-                    <label htmlFor='location'>Location</label>
+                    <Label htmlFor='location'>Location</Label>
                     <TextInput
                         id='location'
                         type='text'
@@ -57,7 +88,7 @@ const CreateCampaign = () => {
                     />
                 </FormContainer>
                 <FormContainer>
-                    <label>Severity level</label>
+                    <Label>Severity level</Label>
                     <SelectInput>
                         <option value='urgent'>Urgent</option>
                         <option value='medium'>Medium</option>
@@ -65,7 +96,7 @@ const CreateCampaign = () => {
                     </SelectInput>
                 </FormContainer>
                 <FormContainer>
-                    <label htmlFor='donation'>Donation goal</label>
+                    <Label htmlFor='donation'>Donation goal</Label>
                     <TextInput
                         id='donation'
                         type='number'
@@ -74,7 +105,7 @@ const CreateCampaign = () => {
                     />
                 </FormContainer>
                 <FormContainer>
-                    <label htmlFor='calendar'>Campaign ends</label>
+                    <Label htmlFor='calendar'>Campaign ends</Label>
                     <TextInput
                         id='calendar'
                         type='text'
@@ -83,7 +114,7 @@ const CreateCampaign = () => {
                     />
                 </FormContainer>
                 <FormContainer>
-                    <button type='submit'>Save campaign</button>
+                    <CreateButton type='submit'>Save campaign</CreateButton>
                 </FormContainer>
             </FormWrapper>
         </div >
