@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 
@@ -10,6 +10,7 @@ import CreateCampaign from './OrganizationComponents/CreateCampaign'
 import SupporterList from './SupporterComponents/SupporterList';
 import CampaignList from './OrganizationComponents/CampaignList';
 import OrganzationNavigation from './OrganizationComponents/OrganizationNavigation';
+import PrivateRoute from './components/routes/PrivateRoute';
 
 function App() {
   return (
@@ -18,13 +19,16 @@ function App() {
         <OrganzationNavigation />
         <Route exact path='/' component={Login} />
         <Route path='/register' component={Register} />
-        <Route exact path='/Organization' component={Organization} />
-        <Route exact path='/CampaignList' component={CampaignList} />
-        <Route exact path='/CreateCampaign' component={CreateCampaign} />
-        <Route exact path='/Supporter' component={SupporterList} />
+      </div>
+      <div>
+        <Switch>
+          <PrivateRoute exact path='/Organization' component={Organization} />
+          <Route path='/CampaignList' component={CampaignList} />
+          <Route path='/CreateCampaign' component={CreateCampaign} />
+          <Route path='/Supporter' component={SupporterList} />
+        </Switch>
       </div>
     </Router>
-
   );
 }
 

@@ -14,7 +14,7 @@ const Login = props => {
         e.preventDefault();
         props.loginUser(form);
         setForm({ email: '', password: '' });
-        props.history.push('/');
+        props.history.push('/Organization');
     };
 
     return (
