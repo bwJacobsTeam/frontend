@@ -28,7 +28,7 @@ export const registerOrg = (form) => dispatch => {
     dispatch({ type: REGISTER_ORG_START })
 
     axiosWithAuth()
-        .post('/register', form)
+        .post('https://saveananimal.herokuapp.com/api/organizations/register', form)
         .then(res => {
             console.log('register ORG res', res);
             localStorage.setItem('token', res.data.payload);
@@ -48,7 +48,7 @@ export const registerSupp = (form) => dispatch => {
     dispatch({ type: REGISTER_SUPP_START })
 
     axiosWithAuth()
-        .post('/register', form)
+        .post('https://saveananimal.herokuapp.com/api/supporters/register', form)
         .then(res => {
             console.log('register SUPP res', res);
             localStorage.setItem('token', res.data.payload);
