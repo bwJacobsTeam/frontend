@@ -3,7 +3,6 @@ import CampaignCard from './CampaignCard';
 import { data } from './data';
 
 
-
 const CampaignList = () => {
     //set initial state using fake data from 'data'file
     const [campaigns, setCampaigns] = useState(data)
