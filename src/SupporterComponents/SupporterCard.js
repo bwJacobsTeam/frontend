@@ -31,11 +31,12 @@ const LinkStyle = styled(Link)`
 
 const SupporterCard = (props) => {
 
-    const { campaign_title, description, location, donation_goal } = props.support;
+    const { organization_id, campaign_title, description, location, donation_goal } = props.support;
     return (
         <LinkStyle to={'/Donation'} >
             < div >
                 <h2>Supporter Cards list</h2>
+                <h2>Campaign id: {organization_id}</h2>
                 <h3>Supporter{campaign_title}</h3>
                 <h4>Supporter {description}</h4>
                 <p>Supporter Location:  {location}</p>

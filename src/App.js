@@ -28,7 +28,6 @@ function App() {
         <Route exact path='/Donation' component={SupporterDonation} />
       </div>
     </Router>
-
   );
 }
 

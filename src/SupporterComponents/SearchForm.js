@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { tsPropertySignature } from '@babel/types';
 
 const TextInput = styled.input`
     /* border: 1px solid red; */
@@ -14,8 +15,8 @@ const TextInput = styled.input`
 `
 
 //Build 'SearchForm' seperate from SupporterList
-//props --> pass down 'onHandleChange' to onChange and 'query' functionality to value
-const SearchForm = () => {
+//props --> pass down 'handleInputChange' to onChange and 'query' functionality to value
+const SearchForm = (props) => {
     return (
         <div>
             <form>
@@ -23,8 +24,8 @@ const SearchForm = () => {
                     type='text'
                     name='search'
                     placeholder='Search by species, location, and issue??'
-                // onChange={}
-                // value={}
+                    onChange={props.handleInputChange}
+                    value={props.query}
                 />
             </form>
         </div>
