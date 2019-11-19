@@ -11,7 +11,9 @@ import Organization from './OrganizationComponents/Organization';
 import CreateCampaign from './OrganizationComponents/CreateCampaign'
 import SupporterList from './SupporterComponents/SupporterList';
 import CampaignList from './OrganizationComponents/CampaignList';
+import Campaign from './OrganizationComponents/Campaign';
 import OrganzationNavigation from './OrganizationComponents/OrganizationNavigation';
+import SupporterDonation from './SupporterComponents/SupporterDonation';
 
 function App() {
   return (
@@ -25,10 +27,11 @@ function App() {
         <Route exact path='/Organization' component={Organization} />
         <Route exact path='/CampaignList' component={CampaignList} />
         <Route exact path='/CreateCampaign' component={CreateCampaign} />
+        <Route exact path='/Campaign' component={Campaign} />
         <Route exact path='/Supporter' component={SupporterList} />
+        <Route exact path='/Donation' component={SupporterDonation} />
       </div>
     </Router>
-
   );
 }
 
