@@ -19,6 +19,7 @@ const Login = props => {
 
     return (
         <div>
+            <h1>Save The Animals</h1>
             <form onSubmit={login}>
                 <input
                     required
@@ -37,7 +38,7 @@ const Login = props => {
                 <button type='submit'>Log In</button>
             </form>
             <div>
-                <p>Don't have an account yet? <Link to='register-form'>Sign Up!</Link></p>
+                <p>Don't have an account yet? <Link to='user-router'>Sign Up!</Link></p>
             </div>
         </div>
     );
