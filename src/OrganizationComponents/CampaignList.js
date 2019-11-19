@@ -21,13 +21,13 @@ const CampaignList = () => {
             })
     }, [])
 
-
+    console.log(campaignData)
     return (
         <div>
             <h1>Current Campaign --> Displays list of all current campaigns</h1>
             <h3>All current and campaigns</h3>
-            {campaignData.map((campaign, index) => {
-                return <CampaignCard key={index} campaign={campaign} />;
+            {campaignData.map((campaign, id) => {
+                return <CampaignCard key={id} campaign={campaign} />;
             })}
         </div>
     )
