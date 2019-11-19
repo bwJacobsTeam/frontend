@@ -48,13 +48,25 @@ const Register = props => {
                     placeholder='Password'
                     onChange={handleChanges}
                     value={form.password} />
-                <input
-                    required
-                    type='text'
-                    name='role'
-                    placeholder='Role'
-                    onChange={handleChanges}
-                    value={form.role} />
+                <div>
+                    <p>I am a:</p>
+                    <label> Supporter
+                        <input
+                            type='radio'
+                            name='role'
+                            onChange={handleChanges}
+                            value='supporter'
+                        />
+                    </label>
+                    <label>Organization
+                        <input
+                            type='radio'
+                            name='role'
+                            onChange={handleChanges}
+                            value='organization'
+                        />
+                    </label>
+                </div>
                 <button type='submit'>Submit</button>
             </form>
         </div>

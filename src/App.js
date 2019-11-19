@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Login from './components/Login';
 import Register from './components/Register';
 
@@ -19,21 +20,28 @@ function App() {
     <Router>
       <div className="App">
         <OrganzationNavigation />
+        <PrivateRoute exact path='/Organization' component={Organization} />
+        <PrivateRoute exact path='/Supporter' component={SupporterList} />
         <Route exact path='/' component={Login} />
         <Route path='/register' component={Register} />
       </div>
       <div>
-        <Switch>
-          <PrivateRoute exact path='/Organization' component={Organization} />
-          <Route path='/CampaignList' component={CampaignList} />
-          <Route path='/CreateCampaign' component={CreateCampaign} />
-          <Route path='/Supporter' component={SupporterList} />
-          <Route path='/Campaign' component={Campaign} />
-          <Route path='/Donation' component={SupporterDonation} />
-        </Switch>
+        {/* <Switch> */}
+        <Route path='/CampaignList' component={CampaignList} />
+        <Route path='/CreateCampaign' component={CreateCampaign} />
+        <Route path='/Campaign' component={Campaign} />
+        <Route path='/Donation' component={SupporterDonation} />
+        {/* </Switch> */}
       </div>
     </Router>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {})(App);
