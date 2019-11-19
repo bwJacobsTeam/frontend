@@ -7,9 +7,9 @@ import { data } from '../OrganizationComponents/data';
 const SupporterList = () => {
     //set initial state using fake data from 'data' file
     const [supporterData, setSupporterData] = useState(data);
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState([]);
 
-    //set useEffect --> connect to API and for 'Search' filtering
+    // set useEffect-- > connect to API and for 'Search' filtering
     // useEffect(() => {
     //     const results = data.filter(item => item['organization_id'].toLowerCase().includes(query.toLowerCase()))
     //     setQuery(results);
