@@ -35,6 +35,8 @@ const SelectInput = styled.select`
     height: 40px;
     width: 100%;
     border: 2px solid lightgrey;
+    font-size: 1rem;
+    color: grey;
 `
 const Label = styled.label`
     /* border: 1px solid green; */
@@ -108,7 +110,7 @@ const CreateCampaign = () => {
                     <Label htmlFor='calendar'>Campaign ends</Label>
                     <TextInput
                         id='calendar'
-                        type='text'
+                        type='date'
                         name='calendar'
                         placeholder='Calendar selector'
                     />
