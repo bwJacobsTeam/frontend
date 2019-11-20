@@ -2,12 +2,12 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import CampaignList from './CampaignList';
 import CreateCampaign from './CreateCampaign';
-// import OrganzationNavigation from './OrganizationNavigation'
+import OrganzationNavigation from './OrganizationNavigation'
 
 const Organization = () => {
     return (
         <div>
-            {/* <OrganzationNavigation /> */}
+            <OrganzationNavigation />
             <Route exact path='/CampaignList' component={CampaignList} />
             <Route exact path='/CreateCampaign' component={CreateCampaign} />
             <h1>Current campaigns</h1>
