@@ -1,13 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
+const NavigationWrapper = styled.div`
+    border: 2px solid red;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2% 0;
+    background: #F2F3F0;
+`
+
+const NavLinkStyle = styled(NavLink)`
+    text-decoration: none;
+    color: #000;
+    font-size: 1.4rem;
+`
 
 const OrganzationNavigation = () => {
     return (
-        <div>
-            <Link to='/CampaignList'>Current campaigns</Link>
-            <Link to='/CreateCampaign' >Create campaign</Link>
-        </div>
+        <NavigationWrapper>
+            <NavLinkStyle to='/Organization'>Home</NavLinkStyle>
+            <NavLinkStyle to='/CampaignList'>Current campaigns</NavLinkStyle>
+            <NavLinkStyle to='/CreateCampaign' >Create campaign</NavLinkStyle>
+        </NavigationWrapper>
     )
 }
 

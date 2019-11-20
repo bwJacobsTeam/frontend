@@ -1,4 +1,5 @@
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { addComments } from '@babel/types';
 
 export const LOGIN_USER_START = 'LOGIN_USER_START';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
@@ -38,5 +39,24 @@ export const registerUser = (form) => dispatch => {
         .catch(err => {
             console.log(err.response);
             dispatch({ type: REGISTER_USER_FAILURE, payload: err })
-        });
+        })
+}
+
+export const CREATING_CAMPAIGN_START = 'CREATING_CAMPAIGN_START';
+export const CREATING_CAMPAIGN_SUCCESS = 'CREATING_CAMPAIGN_SUCCESS';
+export const CREATING_CAMPAIGN_FAILURE = 'CREATING_CAMPAIGN_FAILURE';
+
+export const createCampaign = (newCampaign) => dispatch => {
+    dispatch({ type: CREATING_CAMPAIGN_START });
+    console.log('newCampaign', newCampaign);
+    axiosWithAuth()
+        .post('https://saveananimal.herokuapp.com/api/users/:id/campaignlist', newCampaign)
+        .then(res => {
+            console.log('addCampaign res', res);
+            dispatch({ type: CREATING_CAMPAIGN_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            console.log(err.response);
+            dispatch({ type: CREATING_CAMPAIGN_FAILURE, payload: err })
+        })
 }
