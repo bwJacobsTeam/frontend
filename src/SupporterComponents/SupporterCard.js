@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import SupporterDonation from '../SupporterComponents/SupporterDonation';
 
 const CampaignWrapper = styled.div`
     border: 2px solid red;
@@ -9,13 +10,6 @@ const CampaignWrapper = styled.div`
     display: flex;
     justify-content: center;
 `
-// const CampaignDisplay = styled.div`
-//     border: solid 2px blue;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-// `
-
 const CampaignContainer = styled.div`
     border: 2px solid lightgray;
     border-radius: 5px;
@@ -26,6 +20,7 @@ const CampaignContainer = styled.div`
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 `
 
+
 const ButtonView = styled.button`
     width: 30%;
     height: 40px;
@@ -34,7 +29,7 @@ const ButtonView = styled.button`
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    background: #2196f3;
+    background: dodgerblue;
     color: #FFF;  
 `
 const LinkStyle = styled(Link)`
@@ -42,18 +37,19 @@ const LinkStyle = styled(Link)`
     color: #000;
 `
 
-const CampaignCard = (props) => {
+const SupporterCard = (props) => {
 
-    const { id, campaign_title, description, location, donation_goal } = props.campaign;
+    const { organization_id, campaign_title, description, location, donation_goal } = props.support;
     return (
-        // <LinkStyle to='/Campaign/' >
-        <LinkStyle to={`/Campaign/${props.campaign.id}`} >
+        <LinkStyle to={'/Donation'} >
             < CampaignWrapper >
-                <CampaignContainer key={id}>
-                    <h3>{campaign_title}</h3>
-                    <h4>{description}</h4>
-                    <p>Location:  {location}</p>
-                    <p>Donation goal:  {donation_goal}</p>
+                <CampaignContainer>
+                    <h2>Supporter Cards list</h2>
+                    <h2>Campaign id: {organization_id}</h2>
+                    <h3>Supporter{campaign_title}</h3>
+                    <h4>Supporter {description}</h4>
+                    <p>Supporter Location:  {location}</p>
+                    <p>Supporter Donation goal:  {donation_goal}</p>
                     <ButtonView>View campaign</ButtonView>
                 </CampaignContainer>
             </ CampaignWrapper >
@@ -61,4 +57,4 @@ const CampaignCard = (props) => {
     )
 }
 
-export default CampaignCard;
+export default SupporterCard;

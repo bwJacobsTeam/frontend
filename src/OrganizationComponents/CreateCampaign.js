@@ -2,60 +2,124 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FormWrapper = styled.div`
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding: 3% 0;
+    margin: auto;
+`
+
+const FormContainer = styled.div`
+    /* border: 2px solid blue; */
+    margin: 2% 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;    
+`
+const TextInput = styled.input`
+    /* border: 1px solid red; */
+    margin: 0 3%;
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0 2%;
+    border: 2px solid lightgrey;
+`
+const SelectInput = styled.select`
+    /* border: 1px solid red; */
+    margin: 0 3%;
+    height: 40px;
+    width: 100%;
+    border: 2px solid lightgrey;
+    font-size: 1rem;
+    color: grey;
+`
+const Label = styled.label`
+    /* border: 1px solid green; */
+    width: 27%;
     display: flex;
 `
 
+const CreateButton = styled.button`
+    width: 80%;
+    height: 50px;
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background: #2196f3;
+    color: #FFF;
+`
+
+//IMPORTANT --> still need to add 'value' properties for each (leaving off for now)
 const CreateCampaign = () => {
     return (
         <div>
             <h1>Create a new campaign</h1>
             <h3>Name your campaign and funding target</h3>
             <FormWrapper>
-                <label htmlFor='campaign'>Campaign title</label>
-                <input
-                    id='campaign'
-                    type='text'
-                    name='campaign'
-                    placeholder='Campaign title'
-                />
-                <label htmlFor='description'>Description</label>
-                <input
-                    id='description'
-                    type='text'
-                    name='description'
-                    placeholder='Description'
-                />
-                <label htmlFor='location'>Location</label>
-                <input
-                    id='location'
-                    type='text'
-                    name='location'
-                    placeholder='Location'
-                />
-                <label>Severity level</label>
-                <select>
-                    <option value='urgent'>Urgent</option>
-                    <option value='medium'>Medium</option>
-                    <option value='low'>Low</option>
-                </select>
-                <label htmlFor='donation'>Donation goal</label>
-                <input
-                    id='donation'
-                    type='number'
-                    name='donation'
-                    placeholder='Donation goal'
-                />
-                <label htmlFor='calendar'>Campaign ends</label>
-                <input
-                    id='calendar'
-                    type='text'
-                    name='calendar'
-                    placeholder='Calendar selector'
-                />
-                <button type='submit'>Save campaign</button>
+                <FormContainer>
+                    <Label htmlFor='campaign'>Campaign title</Label>
+                    <TextInput
+                        id='campaign'
+                        type='text'
+                        name='campaign'
+                        placeholder='Campaign title'
+                    />
+                </FormContainer>
+                <FormContainer>
+                    <Label htmlFor='description'>Description</Label>
+                    <TextInput
+                        id='description'
+                        type='textarea'
+                        name='description'
+                        placeholder='Description'
+                    />
+                </FormContainer>
+                <FormContainer>
+                    <Label htmlFor='location'>Location</Label>
+                    <TextInput
+                        id='location'
+                        type='text'
+                        name='location'
+                        placeholder='Location'
+                    />
+                </FormContainer>
+                <FormContainer>
+                    <Label>Severity level</Label>
+                    <SelectInput>
+                        <option value='urgent'>Urgent</option>
+                        <option value='medium'>Medium</option>
+                        <option value='low'>Low</option>
+                    </SelectInput>
+                </FormContainer>
+                <FormContainer>
+                    <Label htmlFor='donation'>Donation goal</Label>
+                    <TextInput
+                        id='donation'
+                        type='number'
+                        name='donation'
+                        placeholder='Donation goal'
+                    />
+                </FormContainer>
+                <FormContainer>
+                    <Label htmlFor='calendar'>Campaign ends</Label>
+                    <TextInput
+                        id='calendar'
+                        type='date'
+                        name='calendar'
+                        placeholder='Calendar selector'
+                    />
+                </FormContainer>
+                <FormContainer>
+                    <CreateButton type='submit'>Save campaign</CreateButton>
+                </FormContainer>
             </FormWrapper>
-        </div>
+        </div >
     )
 }
 

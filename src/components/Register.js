@@ -1,25 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { registerSupp } from './store/actions/index';
+import { registerUser } from './store/actions/index';
 
-const RegisterSupp = props => {
-    const [form, setForm] = React.useState({ first_name: '', last_name: '', email: '', password: '' });
+const Register = props => {
+    const [form, setForm] = React.useState({ first_name: '', last_name: '', email: '', password: '', role: '' });
 
     const handleChanges = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const regSupp = e => {
+    const register = e => {
         e.preventDefault();
-        props.registerSupp(form);
-        setForm({ first_name: '', last_name: '', email: '', password: '' });
+        props.registerUser(form);
+        setForm({ first_name: '', last_name: '', email: '', password: '', role: '' });
         props.history.push('/');
     };
 
     return (
         <div>
             <h1>Register Now!</h1>
-            <form onSubmit={regSupp}>
+            <form onSubmit={register}>
                 <input
                     required
                     type='text'
@@ -48,6 +48,27 @@ const RegisterSupp = props => {
                     placeholder='Password'
                     onChange={handleChanges}
                     value={form.password} />
+                <div>
+                    <p>I am a:</p>
+                    <label> Supporter
+                        <input
+                            required
+                            type='radio'
+                            name='role'
+                            onChange={handleChanges}
+                            value='supporter'
+                        />
+                    </label>
+                    <label>Organization
+                        <input
+                            required
+                            type='radio'
+                            name='role'
+                            onChange={handleChanges}
+                            value='organization'
+                        />
+                    </label>
+                </div>
                 <button type='submit'>Submit</button>
             </form>
         </div>
@@ -62,4 +83,4 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { registerSupp })(RegisterSupp);
+    { registerUser })(Register);
