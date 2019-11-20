@@ -34,7 +34,7 @@ const TextInput = styled.input`
     /* border: 1px solid red; */
     margin: 0 3%;
     height: 40px;
-    width: 25%;
+    width: 35%;
     border-radius: 5px;
     font-size: 1rem;
     padding: 0 2%;
@@ -60,7 +60,7 @@ const SupporterID = (props) => {
                         id='donation'
                         type='text'
                         name='donation'
-                        placeholder='donation amount'
+                        placeholder='$0.00'
                     />
                 </form>
                 <ButtonView>Complete donation</ButtonView>

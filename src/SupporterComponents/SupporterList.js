@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SupporterCard from '../SupporterComponents/SupporterCard';
-import { data } from '../OrganizationComponents/data';
-import SearchForm from './SearchForm';
 import axios from 'axios';
+import SearchForm from './SearchForm';
 
 
 const SupporterList = () => {
@@ -26,6 +25,7 @@ const SupporterList = () => {
         <div>
             <h1>Current Campaign --> Displays list of all current campaigns</h1>
             <h3>All current and campaigns</h3>
+            <SearchForm />
             {supporterData.map((support, id) => {
                 return <SupporterCard key={id} support={support} />;
             })}
