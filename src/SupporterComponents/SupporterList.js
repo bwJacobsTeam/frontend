@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SupporterCard from '../SupporterComponents/SupporterCard';
-import SearchForm from '../SupporterComponents/SearchForm';
 import { data } from '../OrganizationComponents/data';
+import SearchForm from './SearchForm';
 
 
 const SupporterList = () => {
@@ -15,17 +15,13 @@ const SupporterList = () => {
     //     setQuery(results);
     // }, [query])//Add 'query' to the dependency array to watch for that change/update
 
-    //The handlechange method takes the event object as the argument and sets the current value of the form to the 'query' state using 'setQuery'
-    const handleInputChange = (event) => {
-        setQuery(event.target.value);
-    }
+
 
     return (
         <div>
             <h1>Displays all current campaigns to supporters</h1>
             <h3>All current campaigns you can donate money</h3>
-            {/* SearchForm --> Need to export 'handleChangeInput' and 'query' */}
-            <SearchForm handleInputChange={handleInputChange} query={query} />
+            <SearchForm />
             {supporterData.map((support, index) => {
                 return <SupporterCard key={index} support={support} />
             })}

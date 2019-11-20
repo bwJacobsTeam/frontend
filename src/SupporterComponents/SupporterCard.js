@@ -37,16 +37,6 @@ const LinkStyle = styled(Link)`
     color: #000;
 `
 
-// {
-//     campaign_title: 'Save the Florida Bonneted Bat',
-//     description: 'saving the endangered bonneted bat',
-//     species: 'bat',
-//     location: 'Southern Florida',
-//     urgency: 'medium',
-//     donation_goal: 10000,
-//     organization_id: 1,
-// },
-
 const SupporterCard = (props) => {
 
     const { organization_id, campaign_title, description, location, donation_goal } = props.support;
