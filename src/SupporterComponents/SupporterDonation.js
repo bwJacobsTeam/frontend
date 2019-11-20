@@ -42,6 +42,14 @@ const TextInput = styled.input`
 `
 
 const SupporterDonation = (props) => {
+    //Setup 'useState' to set inital data and set the dynamic id
+
+    //use render props to access history,match,location propertes --> specifically 'props.match.params' to capture DYNAMIC ID
+
+    //Setup 'useEffect' for API call to get data and set the data
+    //Add 'id' that's dynamic to the end of the API link using template literal `${id}`
+
+
 
     // const { campaign_title, description, location, donation_goal } = props.support;
     return (

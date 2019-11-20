@@ -55,6 +55,7 @@ const CreateButton = styled.button`
     color: #FFF;
 `
 
+//IMPORTANT --> still need to add 'value' properties for each (leaving off for now)
 const CreateCampaign = () => {
     return (
         <div>

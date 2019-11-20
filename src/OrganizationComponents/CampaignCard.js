@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Campaign from './Campaign';
 
 const CampaignWrapper = styled.div`
     border: 2px solid red;
@@ -43,30 +42,21 @@ const LinkStyle = styled(Link)`
     color: #000;
 `
 
-// {
-//     campaign_title: 'Save the Florida Bonneted Bat',
-//     description: 'saving the endangered bonneted bat',
-//     species: 'bat',
-//     location: 'Southern Florida',
-//     urgency: 'medium',
-//     donation_goal: 10000,
-//     organization_id: 1,
-// },
-
 const CampaignCard = (props) => {
 
-    const { campaign_title, description, location, donation_goal } = props.campaign;
+    const { id, campaign_title, description, location, donation_goal } = props.campaign;
     return (
-        <LinkStyle to={'/Campaign'} >
+        // <LinkStyle to='/Campaign/' >
+        <LinkStyle to={`/Campaign/${props.campaign.id}`} >
             < CampaignWrapper >
-                <CampaignContainer>
+                <CampaignContainer key={id}>
                     <h3>{campaign_title}</h3>
                     <h4>{description}</h4>
                     <p>Location:  {location}</p>
                     <p>Donation goal:  {donation_goal}</p>
                     <ButtonView>View campaign</ButtonView>
                 </CampaignContainer>
-            </ CampaignWrapper>
+            </ CampaignWrapper >
         </LinkStyle >
     )
 }
