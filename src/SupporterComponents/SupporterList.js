@@ -2,28 +2,32 @@ import React, { useState, useEffect } from 'react';
 import SupporterCard from '../SupporterComponents/SupporterCard';
 import { data } from '../OrganizationComponents/data';
 import SearchForm from './SearchForm';
+import axios from 'axios';
 
 
 const SupporterList = () => {
-    //set initial state using fake data from 'data' file
-    const [supporterData, setSupporterData] = useState(data);
-    const [query, setQuery] = useState([]);
+    //set initial state using fake data from 'data'file
+    const [supporterData, setSupporterData] = useState([])
 
-    // set useEffect-- > connect to API and for 'Search' filtering
-    // useEffect(() => {
-    //     const results = data.filter(item => item['organization_id'].toLowerCase().includes(query.toLowerCase()))
-    //     setQuery(results);
-    // }, [query])//Add 'query' to the dependency array to watch for that change/update
+    // set useEffect-- > connect to API
+    useEffect(() => {
+        axios.get('https://saveananimal.herokuapp.com/api/users/campaigns')
+            .then(response => {
+                console.log(response.data)
+                setSupporterData(response.data)
+            })
+            .catch(error => {
+                console.log('No campaign data returned', error)
+            })
+    }, [])
 
-
-
+    console.log(supporterData)
     return (
         <div>
-            <h1>Displays all current campaigns to supporters</h1>
-            <h3>All current campaigns you can donate money</h3>
-            <SearchForm />
-            {supporterData.map((support, index) => {
-                return <SupporterCard key={index} support={support} />
+            <h1>Current Campaign --> Displays list of all current campaigns</h1>
+            <h3>All current and campaigns</h3>
+            {supporterData.map((support, id) => {
+                return <SupporterCard key={id} support={support} />;
             })}
         </div>
     )

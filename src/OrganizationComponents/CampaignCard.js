@@ -9,13 +9,6 @@ const CampaignWrapper = styled.div`
     display: flex;
     justify-content: center;
 `
-// const CampaignDisplay = styled.div`
-//     border: solid 2px blue;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-// `
-
 const CampaignContainer = styled.div`
     border: 2px solid lightgray;
     border-radius: 5px;
@@ -46,7 +39,6 @@ const CampaignCard = (props) => {
 
     const { id, campaign_title, description, location, donation_goal } = props.campaign;
     return (
-        // <LinkStyle to='/Campaign/' >
         <LinkStyle to={`/Campaign/${props.campaign.id}`} >
             < CampaignWrapper >
                 <CampaignContainer key={id}>

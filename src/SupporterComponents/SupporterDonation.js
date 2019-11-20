@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import SupporterID from './SupporterID';
 
 const DonationWrapper = styled.div`
     border: 2px solid red;
@@ -7,72 +9,43 @@ const DonationWrapper = styled.div`
     justify-content: center;
 `
 
-const DonationContainer = styled.div`
-    border: 2px solid lightgray;
-    border-radius: 5px;
-    width: 40%;
-    margin: 7% 0;
-    padding: 2% 0;
-    /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-`
-
-const ButtonView = styled.button`
-    width: 80%;
-    height: 40px;
-    margin: auto;
-    border-radius: 5px;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    background: #36AB80;
-    color: #FFF;  
-`
-
-const TextInput = styled.input`
-    /* border: 1px solid red; */
-    margin: 0 3%;
-    height: 40px;
-    width: 25%;
-    border-radius: 5px;
-    font-size: 1rem;
-    padding: 0 2%;
-    border: 2px solid lightgrey;
-    margin-bottom: 3%;
-`
-
 const SupporterDonation = (props) => {
     //Setup 'useState' to set inital data and set the dynamic id
+    const [donationData, setDonationData] = useState([])
+    const donationID = props.match.params.id  // 'props.match.params' to capture DYNAMIC ID from component??
 
-    //use render props to access history,match,location propertes --> specifically 'props.match.params' to capture DYNAMIC ID
 
     //Setup 'useEffect' for API call to get data and set the data
     //Add 'id' that's dynamic to the end of the API link using template literal `${id}`
+    useEffect(() => {
+        axios.get(`https://saveananimal.herokuapp.com/api/users/campaigns/${donationID}`)
+            .then(response => {
+                console.log(response.data)
+                setDonationData(response.data)
+            })
+            .catch(error => {
+                console.log('No donation data returned', error)
+            })
+    }, [donationID]);
+    console.log(donationData)
+    console.log(donationID)
 
 
-
-    // const { campaign_title, description, location, donation_goal } = props.support;
     return (
         <DonationWrapper>
-            <DonationContainer>
-                <h2>Supports donate money here</h2>
-                <h3>Campaign title: Test</h3>
-                <h4>Description: Test</h4>
-                <p>Location: Test</p>
-                <p>Donation goal: Test</p>
-                <p>Campaign ends: Test</p>
-                <p>Total raised: Test</p>
-                <form>
-                    <label htmlFor='donation'>Donation amount:</label>
-                    <TextInput
-                        id='donation'
-                        type='text'
-                        name='donation'
-                        placeholder='donation amount'
-                    />
-                </form>
-                <ButtonView>Complete donation</ButtonView>
-            </DonationContainer>
+            {donationData.map(item => {
+                return (
+                    <SupporterID
+                        key={item.id}
+                        campaign_title={item.campaign_title}
+                        description={item.description}
+                        species={item.species}
+                        location={item.location}
+                        urgency={item.urgency}
+                        donation_goal={item.donation_goal}
+                        campaign_end={item.campaign_end}
+                    />)
+            })}
         </DonationWrapper>
     )
 }

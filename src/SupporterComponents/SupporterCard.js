@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import SupporterDonation from '../SupporterComponents/SupporterDonation';
 
 const CampaignWrapper = styled.div`
     border: 2px solid red;
@@ -20,7 +19,6 @@ const CampaignContainer = styled.div`
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 `
 
-
 const ButtonView = styled.button`
     width: 30%;
     height: 40px;
@@ -29,7 +27,7 @@ const ButtonView = styled.button`
     border: none;
     font-size: 1rem;
     font-weight: bold;
-    background: dodgerblue;
+    background: #2196f3;
     color: #FFF;  
 `
 const LinkStyle = styled(Link)`
@@ -39,17 +37,15 @@ const LinkStyle = styled(Link)`
 
 const SupporterCard = (props) => {
 
-    const { organization_id, campaign_title, description, location, donation_goal } = props.support;
+    const { id, campaign_title, description, location, donation_goal } = props.support;
     return (
-        <LinkStyle to={'/Donation'} >
+        <LinkStyle to={`/Donation/${props.support.id}`} >
             < CampaignWrapper >
-                <CampaignContainer>
-                    <h2>Supporter Cards list</h2>
-                    <h2>Campaign id: {organization_id}</h2>
-                    <h3>Supporter{campaign_title}</h3>
-                    <h4>Supporter {description}</h4>
-                    <p>Supporter Location:  {location}</p>
-                    <p>Supporter Donation goal:  {donation_goal}</p>
+                <CampaignContainer key={id}>
+                    <h3>{campaign_title}</h3>
+                    <h4>{description}</h4>
+                    <p>Location:  {location}</p>
+                    <p>Donation goal:  {donation_goal}</p>
                     <ButtonView>View campaign</ButtonView>
                 </CampaignContainer>
             </ CampaignWrapper >
