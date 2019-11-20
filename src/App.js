@@ -27,7 +27,7 @@ function App() {
         <Route exact path='/Organization' component={Organization} />
         <Route exact path='/CampaignList' component={CampaignList} />
         <Route exact path='/CreateCampaign' component={CreateCampaign} />
-        <Route exact path='/Campaign' component={Campaign} />
+        <Route exact path='/Campaign/:id' component={Campaign} />
         <Route exact path='/Supporter' component={SupporterList} />
         <Route exact path='/Donation' component={SupporterDonation} />
       </div>
