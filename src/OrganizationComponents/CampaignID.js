@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { deleteCampaign } from '../components/store/actions/index';
 
 const CampaignWrapper = styled.div`
     border: 2px solid blue;
@@ -40,9 +42,15 @@ const ButtonWrapper = styled.div`
     width: 80%;
 `
 
-const CampaignID = (props) => {
+const CampaignID = (props, campaigns) => {
+    console.log(campaigns);
+    const { id, campaign_title, description, species, location, urgency, donation_goal, campaign_end } = props;
 
-    const { campaign_title, description, species, location, urgency, donation_goal, campaign_end } = props;
+    const handleDelete = e => {
+        e.preventDefault();
+        deleteCampaign(id, campaigns)
+    }
+    console.log('id', id);
     return (
         <CampaignWrapper key={props.id}>
             <CampaignContainer>
@@ -56,11 +64,21 @@ const CampaignID = (props) => {
                 <p>Total raised:</p>
                 <ButtonWrapper>
                     <Button>Edit</Button>
-                    <ButtonDelete>Delete</ButtonDelete>
+                    <ButtonDelete onClick={handleDelete}>Delete</ButtonDelete>
                 </ButtonWrapper>
             </CampaignContainer>
         </CampaignWrapper>
     )
 }
 
-export default CampaignID;
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        campaigns: state.campaigns
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    { deleteCampaign }
+)(CampaignID);

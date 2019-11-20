@@ -1,5 +1,4 @@
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { addComments } from '@babel/types';
 
 export const LOGIN_USER_START = 'LOGIN_USER_START';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
@@ -58,5 +57,22 @@ export const createCampaign = (newCampaign) => dispatch => {
         .catch(err => {
             console.log(err.response);
             dispatch({ type: CREATING_CAMPAIGN_FAILURE, payload: err })
+        })
+}
+
+export const DELETE_START = 'DELETE_START'
+export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const DELETE_FAILURE = 'DELETE_FAILURE';
+
+export const deleteCampaign = (campaign) => dispatch => {
+    dispatch({ type: DELETE_START });
+    console.log('DELETE', campaign);
+    axiosWithAuth()
+        .delete(`https://saveananimal.herokuapp.com/api/campaigns/${campaign}`, campaign)
+        .then(res => {
+            dispatch({ type: DELETE_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            dispatch({ type: DELETE_FAILURE, payload: err })
         })
 }
