@@ -21,13 +21,19 @@ const SearchForm = () => {
     const [query, setQuery] = useState('');
 
     useEffect(() => {
-        axios.get('https://saveananimal.herokuapp.com/api/users/campaigns')
+        axios.get('https://saveananimal.herokuapp.com/api/campaigns')
             .then(response => {
                 console.log(response.data)
                 const donationData = response.data;
                 console.log(donationData)
 
-                const result = donationData.filter(data => data.campaign_title.toLowerCase().includes(query.toLowerCase()))
+                const result = donationData.filter(data => {
+                    return (
+                        data.location.toLowerCase().includes(query.toLowerCase()) ||
+                        data.species.toLowerCase().includes(query.toLowerCase()) ||
+                        data.urgency.toLowerCase().includes(query.toLowerCase())
+                    )
+                })
                 console.log(result)
                 setSupporterData(result);
             })
@@ -35,6 +41,14 @@ const SearchForm = () => {
                 console.log('No search filter data returned', error)
             })
     }, [query])
+
+    // const result = supporterData.filter(data => {
+    //     return (
+    //         data.location.toLowerCase().includes(query.toLowerCase()) >= 0 ||
+    //         data.species.toLowerCase().includes(query.toLowerCase()) >= 0 ||
+    //         data.urgency.toLowerCase().includes(query.toLowerCase()) >= 0
+    //     )
+    // })
 
     //The handlechange method takes the event object as the argument and sets the current value of the form to the 'query' state using 'setQuery'
     const handleInputChange = (event) => {

@@ -18,7 +18,7 @@ const SupporterDonation = (props) => {
     //Setup 'useEffect' for API call to get data and set the data
     //Add 'id' that's dynamic to the end of the API link using template literal `${id}`
     useEffect(() => {
-        axios.get(`https://saveananimal.herokuapp.com/api/users/campaigns/${donationID}`)
+        axios.get(`https://saveananimal.herokuapp.com/api/campaigns/${donationID}`)
             .then(response => {
                 console.log(response.data)
                 setDonationData(response.data)

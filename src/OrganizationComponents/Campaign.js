@@ -19,7 +19,7 @@ const Campaign = (props) => {
     //Setup 'useEffect' for API call to get data and set the data
     //Add 'id' that's dynamic to the end of the API link using template literal `${id}`
     useEffect(() => {
-        axios.get(`https://saveananimal.herokuapp.com/api/users/campaigns/${dataID}`)
+        axios.get(`https://saveananimal.herokuapp.com/api/campaigns/${dataID}`)
             .then(response => {
                 console.log(response.data)
                 setCampaignData(response.data)

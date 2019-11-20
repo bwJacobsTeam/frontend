@@ -46,7 +46,7 @@ const CampaignCard = (props) => {
                     <h4>{description}</h4>
                     <p>Location:  {location}</p>
                     <p>Donation goal:  {donation_goal}</p>
-                    <ButtonView>View campaign</ButtonView>
+
                 </CampaignContainer>
             </ CampaignWrapper >
         </LinkStyle >
