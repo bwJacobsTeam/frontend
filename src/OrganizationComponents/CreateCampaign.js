@@ -59,7 +59,7 @@ const CreateButton = styled.button`
 
 //IMPORTANT --> still need to add 'value' properties for each (leaving off for now)
 const CreateCampaign = props => {
-    const [campaign, setCampaign] = useState({ campaign_title: '', description: '', species: '', location: '', donation_goal: '', campaign_end: '' });
+    const [campaign, setCampaign] = useState({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' });
 
     const changeHandler = e => {
         setCampaign({ ...campaign, [e.target.name]: e.target.value });
@@ -77,7 +77,7 @@ const CreateCampaign = props => {
             id: props.user.id
         };
         props.createCampaign(newCampaign);
-        setCampaign({ campaign_title: '', description: '', species: '', location: '', donation_goal: '', campaign_end: '' })
+        setCampaign({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
     };
 
     return (
@@ -89,6 +89,7 @@ const CreateCampaign = props => {
                     <FormContainer>
                         <Label htmlFor='campaign'>Campaign title</Label>
                         <TextInput
+                            required
                             type='text'
                             name='campaign_title'
                             placeholder='Campaign title'
@@ -99,6 +100,7 @@ const CreateCampaign = props => {
                     <FormContainer>
                         <Label htmlFor='description'>Description</Label>
                         <TextInput
+                            required
                             type='textarea'
                             name='description'
                             placeholder='Description'
@@ -109,6 +111,7 @@ const CreateCampaign = props => {
                     <FormContainer>
                         <Label htmlFor='species'>Species</Label>
                         <TextInput
+                            required
                             type='text'
                             name='species'
                             placeholder='Species'
@@ -119,6 +122,7 @@ const CreateCampaign = props => {
                     <FormContainer>
                         <Label htmlFor='location'>Location</Label>
                         <TextInput
+                            required
                             type='text'
                             name='location'
                             placeholder='Location'
@@ -127,16 +131,20 @@ const CreateCampaign = props => {
                         />
                     </FormContainer>
                     <FormContainer>
-                        <Label>Severity level</Label>
-                        <SelectInput>
-                            <option value='urgent'>Urgent</option>
-                            <option value='medium'>Medium</option>
-                            <option value='low'>Low</option>
-                        </SelectInput>
+                        <Label htmlFor='urgency'>Severity level</Label>
+                        <TextInput
+                            required
+                            type='text'
+                            name='urgency'
+                            placeholder='Urgent, Medium, or Low'
+                            value={campaign.urgency}
+                            onChange={changeHandler}
+                        />
                     </FormContainer>
                     <FormContainer>
                         <Label htmlFor='donation'>Donation goal</Label>
                         <TextInput
+                            required
                             type='number'
                             name='donation_goal'
                             placeholder='Donation goal'
@@ -147,6 +155,7 @@ const CreateCampaign = props => {
                     <FormContainer>
                         <Label htmlFor='calendar'>Campaign ends</Label>
                         <TextInput
+                            required
                             type='date'
                             name='campaign_end'
                             placeholder='Calendar selector'

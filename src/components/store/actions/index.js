@@ -50,7 +50,7 @@ export const createCampaign = (newCampaign) => dispatch => {
     dispatch({ type: CREATING_CAMPAIGN_START });
     console.log('newCampaign', newCampaign);
     axiosWithAuth()
-        .post('https://saveananimal.herokuapp.com/api/users/:id/campaignlist', newCampaign)
+        .post('https://saveananimal.herokuapp.com/api/campaigns', newCampaign)
         .then(res => {
             console.log('addCampaign res', res);
             dispatch({ type: CREATING_CAMPAIGN_SUCCESS, payload: res.data })

@@ -11,7 +11,7 @@ const CampaignList = () => {
 
     // set useEffect-- > connect to API
     useEffect(() => {
-        axios.get('https://saveananimal.herokuapp.com/api/users/:id/campaignlist')
+        axios.get('https://saveananimal.herokuapp.com/api/campaigns')
             .then(response => {
                 console.log(response.data)
                 setCampaignData(response.data)
