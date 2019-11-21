@@ -104,12 +104,19 @@ const SupporterID = (props) => {
     //           donation_amount: 6985
     //         },
 
+
     const onSubmitDonation = (event) => {
         event.preventDefault()
         axios.post(`https://saveananimal.herokuapp.com/campaigns/${supporterID}/donations/`, postDonation)
-            // console.log('this is the post', supporterID)
+        console.log('this is the post', supporterID)
             .then(response => {
                 console.log(response)
+                // addNewDonation(postDonation);
+                setPostDonation({
+                    supporter_id: id,
+                    campaign_id: supporterID,
+                    donation_amount: ''
+                })
             })
             .catch(error => {
                 console.log('No donations posted', error)
