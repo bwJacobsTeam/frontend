@@ -42,13 +42,6 @@ const SearchForm = () => {
             })
     }, [query])
 
-    // const result = supporterData.filter(data => {
-    //     return (
-    //         data.location.toLowerCase().includes(query.toLowerCase()) >= 0 ||
-    //         data.species.toLowerCase().includes(query.toLowerCase()) >= 0 ||
-    //         data.urgency.toLowerCase().includes(query.toLowerCase()) >= 0
-    //     )
-    // })
 
     //The handlechange method takes the event object as the argument and sets the current value of the form to the 'query' state using 'setQuery'
     const handleInputChange = (event) => {

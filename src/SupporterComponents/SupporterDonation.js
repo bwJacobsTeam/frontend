@@ -34,6 +34,7 @@ const SupporterDonation = (props) => {
     return (
         <DonationWrapper>
             {donationData.map(item => {
+                console.log(item)
                 return (
                     <SupporterID
                         key={item.id}
@@ -44,6 +45,7 @@ const SupporterDonation = (props) => {
                         urgency={item.urgency}
                         donation_goal={item.donation_goal}
                         campaign_end={item.campaign_end}
+                        supporterID={item.id}
                     />)
             })}
         </DonationWrapper>
