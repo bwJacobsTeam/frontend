@@ -77,47 +77,73 @@ const CreateCampaign = props => {
     //can apply form validation inside 'submitForm'
     const submitForm = e => {
         e.preventDefault();
-        const newCampaign = {
-            ...campaign,
-            user_id: idVar
-        };
-        props.createCampaign(newCampaign);
-        setCampaign({ user_id: idVar, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
+        //add the validation schema to check if campaign or state 'valid'
+        createCampaignSchema.isValid(campaign)
+            .then(valid => {
+                if (valid) {
+                    const newCampaign = {
+                        ...campaign,
+                        user_id: idVar
+                    };
+                    props.createCampaign(newCampaign);
+                    setCampaign({ user_id: idVar, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
+                } else {
+                    alert('Please fill out all fields')
+                }
+            })
+
+
     };
+    //Eric's current working code just commented out to try to get validation working
+    // const submitForm = e => {
+    //     e.preventDefault();
+    //     const newCampaign = {
+    //         ...campaign,
+    //         user_id: idVar
+    //     };
+    //     props.createCampaign(newCampaign);
+    //     setCampaign({ user_id: idVar, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
+    // };
 
     //YUP --> https://medium.com/@rossbulat/introduction-to-yup-object-validation-in-react-9863af93dc0e
     //1. Build validation schema
     const createCampaignSchema = yup.object().shape({
         campaign_title: yup
             .string()
-            .required()
+            .required('Please name your campaign title- max 40 characters')
+            .max(40),
         description: yup
             .string()
-            .required()
+            .required('Describe your campaign and why you need donations')
+            .max(280),
         species: yup
             .string()
-            .required()
+            .required('What type of animal are you rasing donations for?'),
         location: yup
             .string()
-            .required()
+            .required('What city or country is your campaign located?'),
         urgency: yup
             .string()
-            .required()
+            .required('Enter an urgency level for your donation'),
         donation_goal: yup
             .number()
-            .required()
+            .required('How much money do you want to raise?')
+            .positive()
+            .integer()
+            .min(0),
         campaign_end: yup
             .date()
-            .required()
-            .default(() => (new Date())
+            .required('When will your campaign end?')
+        // .default(() => (new Date())
+        // )
     })
 
-    //.2 Validate objects with MY Schema
-
-
-
-    //3. Check if the object is valid
-
+    //.2 Validate objects with createCampaignSchema
+    createCampaignSchema.validate(campaign)
+        .catch((error) => {
+            console.log('Yup errors not working', error)
+            // alert(error.message);
+        })
 
 
     return (
