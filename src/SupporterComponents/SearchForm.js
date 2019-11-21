@@ -31,7 +31,8 @@ const SearchForm = () => {
                     return (
                         data.location.toLowerCase().includes(query.toLowerCase()) ||
                         data.species.toLowerCase().includes(query.toLowerCase()) ||
-                        data.urgency.toLowerCase().includes(query.toLowerCase())
+                        data.urgency.toLowerCase().includes(query.toLowerCase()) ||
+                        data.description.toLowerCase().includes(query.toLowerCase())
                     )
                 })
                 console.log(result)

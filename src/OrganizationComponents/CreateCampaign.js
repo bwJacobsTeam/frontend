@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { createCampaign } from '../components/store/actions/index';
+import * as yup from 'yup';
 
 const FormWrapper = styled.div`
     /* border: 2px solid red; */
@@ -70,6 +71,7 @@ const CreateCampaign = props => {
         setCampaign({ ...props.currentCampaign })
     }, [props.currentCampaign])
 
+    //can apply form validation inside 'submitForm'
     const submitForm = e => {
         e.preventDefault();
         const newCampaign = {
@@ -79,6 +81,13 @@ const CreateCampaign = props => {
         props.createCampaign(newCampaign);
         setCampaign({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
     };
+
+    //YUP --> https://medium.com/@rossbulat/introduction-to-yup-object-validation-in-react-9863af93dc0e
+    //Build validation schema
+    // Validate objects with MY Schema
+    //Check if the object is valid
+
+
 
     return (
         <div>

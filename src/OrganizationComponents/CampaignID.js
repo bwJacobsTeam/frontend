@@ -53,7 +53,7 @@ const CampaignID = (props) => {
                 <p>Urgency Level{urgency}</p>
                 <p>Donation goal:{donation_goal}</p>
                 <p>Campaign ends:{campaign_end}</p>
-                <p>Total raised:</p>
+                <p>Total raised: </p>
                 <ButtonWrapper>
                     <Button>Edit</Button>
                     <ButtonDelete>Delete</ButtonDelete>

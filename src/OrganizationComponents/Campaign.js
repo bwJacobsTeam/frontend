@@ -43,6 +43,7 @@ const Campaign = (props) => {
                         urgency={item.urgency}
                         donation_goal={item.donation_goal}
                         campaign_end={item.campaign_end}
+                        donorID={item.id}
                     />)
             })}
         </CampaignWrapper >

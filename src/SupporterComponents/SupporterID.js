@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { numberLiteralTypeAnnotation } from '@babel/types';
 
 const DonationWrapper = styled.div`
     border: 2px solid red;
@@ -46,7 +45,7 @@ const TextInput = styled.input`
 
 const SupporterID = (props) => {
     console.log(props)
-    const { id, campaign_title, description, location, donation_goal, campaign_end } = props;
+
     //setup state to hold donation sum/total data --> useState
     const [donationsTotal, setDonationsTotal] = useState();
     // const donationID = props.match.params.id
@@ -73,19 +72,18 @@ const SupporterID = (props) => {
                 console.log(sumTotal)
 
                 setDonationsTotal(sumTotal);
-
-
-
             })
             .catch(error => {
                 console.log('No donations data returned', error)
             })
     }, [supporterID])
 
+
     // set up reducer array method to get sum of donations array.
     //store in variable and spread current array to add to the donations array
     //Should give a  current up to date total --> 'total overall donations'
 
+    const { campaign_title, description, location, donation_goal, campaign_end } = props;
     return (
         <DonationWrapper>
             <DonationContainer>

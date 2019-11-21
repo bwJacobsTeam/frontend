@@ -49,7 +49,6 @@ const SupporterCard = (props) => {
                     <p>Urgency level: {urgency}</p>
                     <p>Donation goal:  {donation_goal}</p>
                     <p>Campaign ends: {campaign_end}</p>
-                    <ButtonView>View campaign</ButtonView>
                 </CampaignContainer>
             </ CampaignWrapper >
         </LinkStyle >
