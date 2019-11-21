@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { createCampaign } from '../components/store/actions/index';
 
 const FormWrapper = styled.div`
     /* border: 2px solid red; */
@@ -56,71 +58,129 @@ const CreateButton = styled.button`
 `
 
 //IMPORTANT --> still need to add 'value' properties for each (leaving off for now)
-const CreateCampaign = () => {
+const CreateCampaign = props => {
+    const [campaign, setCampaign] = useState({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' });
+
+    const changeHandler = e => {
+        setCampaign({ ...campaign, [e.target.name]: e.target.value });
+    };
+
+    useEffect(() => {
+        console.log('currentCampaign', props.currentCampaign);
+        setCampaign({ ...props.currentCampaign })
+    }, [props.currentCampaign])
+
+    const submitForm = e => {
+        e.preventDefault();
+        const newCampaign = {
+            ...campaign,
+            id: props.user.id
+        };
+        props.createCampaign(newCampaign);
+        setCampaign({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
+    };
+
     return (
         <div>
             <h1>Create a new campaign</h1>
             <h3>Name your campaign and funding target</h3>
             <FormWrapper>
-                <FormContainer>
-                    <Label htmlFor='campaign'>Campaign title</Label>
-                    <TextInput
-                        id='campaign'
-                        type='text'
-                        name='campaign'
-                        placeholder='Campaign title'
-                    />
-                </FormContainer>
-                <FormContainer>
-                    <Label htmlFor='description'>Description</Label>
-                    <TextInput
-                        id='description'
-                        type='textarea'
-                        name='description'
-                        placeholder='Description'
-                    />
-                </FormContainer>
-                <FormContainer>
-                    <Label htmlFor='location'>Location</Label>
-                    <TextInput
-                        id='location'
-                        type='text'
-                        name='location'
-                        placeholder='Location'
-                    />
-                </FormContainer>
-                <FormContainer>
-                    <Label>Severity level</Label>
-                    <SelectInput>
-                        <option value='urgent'>Urgent</option>
-                        <option value='medium'>Medium</option>
-                        <option value='low'>Low</option>
-                    </SelectInput>
-                </FormContainer>
-                <FormContainer>
-                    <Label htmlFor='donation'>Donation goal</Label>
-                    <TextInput
-                        id='donation'
-                        type='number'
-                        name='donation'
-                        placeholder='Donation goal'
-                    />
-                </FormContainer>
-                <FormContainer>
-                    <Label htmlFor='calendar'>Campaign ends</Label>
-                    <TextInput
-                        id='calendar'
-                        type='date'
-                        name='calendar'
-                        placeholder='Calendar selector'
-                    />
-                </FormContainer>
-                <FormContainer>
-                    <CreateButton type='submit'>Save campaign</CreateButton>
-                </FormContainer>
+                <form onSubmit={submitForm}>
+                    <FormContainer>
+                        <Label htmlFor='campaign'>Campaign title</Label>
+                        <TextInput
+                            required
+                            type='text'
+                            name='campaign_title'
+                            placeholder='Campaign title'
+                            value={campaign.campaign_title}
+                            onChange={changeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <Label htmlFor='description'>Description</Label>
+                        <TextInput
+                            required
+                            type='textarea'
+                            name='description'
+                            placeholder='Description'
+                            value={campaign.description}
+                            onChange={changeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <Label htmlFor='species'>Species</Label>
+                        <TextInput
+                            required
+                            type='text'
+                            name='species'
+                            placeholder='Species'
+                            value={campaign.species}
+                            onChange={changeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <Label htmlFor='location'>Location</Label>
+                        <TextInput
+                            required
+                            type='text'
+                            name='location'
+                            placeholder='Location'
+                            value={campaign.location}
+                            onChange={changeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <Label htmlFor='urgency'>Severity level</Label>
+                        <TextInput
+                            required
+                            type='text'
+                            name='urgency'
+                            placeholder='Urgent, Medium, or Low'
+                            value={campaign.urgency}
+                            onChange={changeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <Label htmlFor='donation'>Donation goal</Label>
+                        <TextInput
+                            required
+                            type='number'
+                            name='donation_goal'
+                            placeholder='Donation goal'
+                            value={campaign.donation_goal}
+                            onChange={changeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <Label htmlFor='calendar'>Campaign ends</Label>
+                        <TextInput
+                            required
+                            type='date'
+                            name='campaign_end'
+                            placeholder='Calendar selector'
+                            value={campaign.campaign_end}
+                            onChange={changeHandler}
+                        />
+                    </FormContainer>
+                    <FormContainer>
+                        <CreateButton type='submit'>Save campaign</CreateButton>
+                    </FormContainer>
+                </form>
             </FormWrapper>
         </div >
-    )
+    );
+};
+
+const mapStateToProps = state => {
+    console.log('form state', state);
+    return {
+        user: state.currentUser,
+        currentCampaign: state.currentCampaign
+    }
 }
 
-export default CreateCampaign;
+export default connect(
+    mapStateToProps,
+    { createCampaign }
+)(CreateCampaign);

@@ -1,4 +1,4 @@
-import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, REGISTER_USER_START, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE } from "../actions";
+import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, REGISTER_USER_START, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, CREATING_CAMPAIGN_START, CREATING_CAMPAIGN_SUCCESS, CREATING_CAMPAIGN_FAILURE } from "../actions";
 
 const initialState = {
     user: {
@@ -13,7 +13,10 @@ const initialState = {
     isLoggingIn: false,
     loggingInErr: '',
     isRegistering: false,
-    registeringErr: ''
+    registeringErr: '',
+    isAdding: false,
+    error: '',
+    currentCampaign: {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +54,25 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isRegistering: false,
                 registeringErr: action.payload
+            }
+        case CREATING_CAMPAIGN_START:
+            return {
+                ...state,
+                isAdding: true,
+                error: '',
+            }
+        case CREATING_CAMPAIGN_SUCCESS:
+            return {
+                ...state,
+                isAdding: false,
+                error: '',
+                campaign: action.payload
+            }
+        case CREATING_CAMPAIGN_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                isAdding: false
             }
 
         default:

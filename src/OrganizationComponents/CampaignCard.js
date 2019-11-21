@@ -9,13 +9,6 @@ const CampaignWrapper = styled.div`
     display: flex;
     justify-content: center;
 `
-// const CampaignDisplay = styled.div`
-//     border: solid 2px blue;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-// `
-
 const CampaignContainer = styled.div`
     border: 2px solid lightgray;
     border-radius: 5px;
@@ -44,17 +37,17 @@ const LinkStyle = styled(Link)`
 
 const CampaignCard = (props) => {
 
-    const { id, campaign_title, description, location, donation_goal } = props.campaign;
+    const { id, campaign_title, description, species, location, donation_goal } = props.campaign;
     return (
-        // <LinkStyle to='/Campaign/' >
         <LinkStyle to={`/Campaign/${props.campaign.id}`} >
             < CampaignWrapper >
                 <CampaignContainer key={id}>
                     <h3>{campaign_title}</h3>
                     <h4>{description}</h4>
+                    <p>Species:  {species}</p>
                     <p>Location:  {location}</p>
                     <p>Donation goal:  {donation_goal}</p>
-                    <ButtonView>View campaign</ButtonView>
+
                 </CampaignContainer>
             </ CampaignWrapper >
         </LinkStyle >
