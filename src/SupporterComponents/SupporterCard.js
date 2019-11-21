@@ -37,15 +37,18 @@ const LinkStyle = styled(Link)`
 
 const SupporterCard = (props) => {
 
-    const { id, campaign_title, description, location, donation_goal } = props.support;
+    const { id, campaign_title, description, species, location, urgency, donation_goal, campaign_end } = props.support;
     return (
         <LinkStyle to={`/Donation/${props.support.id}`} >
             < CampaignWrapper >
                 <CampaignContainer key={id}>
                     <h3>{campaign_title}</h3>
                     <h4>{description}</h4>
+                    <p>{species}</p>
                     <p>Location:  {location}</p>
+                    <p>Urgency level: {urgency}</p>
                     <p>Donation goal:  {donation_goal}</p>
+                    <p>Campaign ends: {campaign_end}</p>
                     <ButtonView>View campaign</ButtonView>
                 </CampaignContainer>
             </ CampaignWrapper >
