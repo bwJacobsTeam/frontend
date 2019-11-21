@@ -86,9 +86,37 @@ const CreateCampaign = props => {
     };
 
     //YUP --> https://medium.com/@rossbulat/introduction-to-yup-object-validation-in-react-9863af93dc0e
-    //Build validation schema
-    // Validate objects with MY Schema
-    //Check if the object is valid
+    //1. Build validation schema
+    const createCampaignSchema = yup.object().shape({
+        campaign_title: yup
+            .string()
+            .required()
+        description: yup
+            .string()
+            .required()
+        species: yup
+            .string()
+            .required()
+        location: yup
+            .string()
+            .required()
+        urgency: yup
+            .string()
+            .required()
+        donation_goal: yup
+            .number()
+            .required()
+        campaign_end: yup
+            .date()
+            .required()
+            .default(() => (new Date())
+    })
+
+    //.2 Validate objects with MY Schema
+
+
+
+    //3. Check if the object is valid
 
 
 

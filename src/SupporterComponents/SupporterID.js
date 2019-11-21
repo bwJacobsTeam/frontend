@@ -97,8 +97,10 @@ const SupporterID = (props) => {
                 <form>
                     <label htmlFor='donation'>Donation amount:</label>
                     <TextInput
+                        required
                         id='donation'
-                        type='text'
+                        type='number'
+                        min='0'
                         name='donation'
                         placeholder='$0'
                     />
