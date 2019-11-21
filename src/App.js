@@ -10,7 +10,7 @@ import Organization from './OrganizationComponents/Organization';
 import CreateCampaign from './OrganizationComponents/CreateCampaign'
 import SupporterList from './SupporterComponents/SupporterList';
 import CampaignList from './OrganizationComponents/CampaignList';
-import Campaign from './OrganizationComponents/Campaign'
+import Campaign from './OrganizationComponents/Campaign';
 import PrivateRoute from './components/routes/PrivateRoute';
 import SupporterDonation from './SupporterComponents/SupporterDonation';
 

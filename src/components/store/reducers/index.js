@@ -1,4 +1,4 @@
-import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, REGISTER_USER_START, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, CREATING_CAMPAIGN_START, CREATING_CAMPAIGN_SUCCESS, CREATING_CAMPAIGN_FAILURE } from "../actions";
+import { LOGIN_USER_START, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, REGISTER_USER_START, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, CREATING_CAMPAIGN_START, CREATING_CAMPAIGN_SUCCESS, CREATING_CAMPAIGN_FAILURE, DELETE_SUCCESS, DELETE_FAILURE, DELETE_START, EDIT_START, EDIT_SUCCESS, EDIT_FAILURE } from "../actions";
 
 const initialState = {
     user: {
@@ -15,7 +15,12 @@ const initialState = {
     isRegistering: false,
     registeringErr: '',
     isAdding: false,
-    error: '',
+    addingErr: '',
+    isEditing: false,
+    editingErr: '',
+    isDeleting: false,
+    deletingErr: '',
+    campaigns: [],
     currentCampaign: {}
 };
 
@@ -59,20 +64,58 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAdding: true,
-                error: '',
+                addingErr: '',
             }
         case CREATING_CAMPAIGN_SUCCESS:
             return {
                 ...state,
                 isAdding: false,
-                error: '',
+                addingErr: '',
                 campaign: action.payload
             }
         case CREATING_CAMPAIGN_FAILURE:
             return {
                 ...state,
-                error: action.payload,
+                addingErr: action.payload,
                 isAdding: false
+            }
+        case EDIT_START:
+            return {
+                ...state,
+                isEditing: true,
+                editingErr: ''
+            }
+        case EDIT_SUCCESS:
+            return {
+                ...state,
+                isEditing: false,
+                editingErr: '',
+                campaign: action.payload
+            }
+        case EDIT_FAILURE:
+            return {
+                ...state,
+                editingErr: '',
+                isEditing: false
+            }
+        case DELETE_START:
+            return {
+                ...state,
+                isDeleting: true,
+                deletingErr: ''
+            }
+        case DELETE_SUCCESS:
+            return {
+                ...state,
+                isDeleting: false,
+                campaigns: action.payload,
+                deletingErr: '',
+            }
+        case DELETE_FAILURE:
+            return {
+                ...state,
+                deletingErr: action.payload,
+                isDeleting: false
             }
 
         default:

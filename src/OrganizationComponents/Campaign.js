@@ -14,6 +14,7 @@ const Campaign = (props) => {
     //Setup 'useState' to set inital data and set the dynamic id
     const [campaignData, setCampaignData] = useState([]);
     const dataID = props.match.params.id
+    console.log('dataID', dataID);
     //use render props to access history,match,location propertes --> specifically 'props.match.params' to capture DYNAMIC ID
 
     //Setup 'useEffect' for API call to get data and set the data
@@ -33,9 +34,10 @@ const Campaign = (props) => {
     return (
         <CampaignWrapper>
             {campaignData.map(item => {
+                console.log(item.id);
                 return (
                     <CampaignID
-                        key={item.id}
+                        id={item.id}
                         campaign_title={item.campaign_title}
                         description={item.description}
                         species={item.species}

@@ -62,6 +62,9 @@ const CreateButton = styled.button`
 const CreateCampaign = props => {
     const [campaign, setCampaign] = useState({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' });
 
+    const idVar = localStorage.getItem('id');
+
+    console.log(props);
     const changeHandler = e => {
         setCampaign({ ...campaign, [e.target.name]: e.target.value });
     };
@@ -76,10 +79,10 @@ const CreateCampaign = props => {
         e.preventDefault();
         const newCampaign = {
             ...campaign,
-            id: props.user.id
+            user_id: idVar
         };
         props.createCampaign(newCampaign);
-        setCampaign({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
+        setCampaign({ user_id: idVar, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
     };
 
     //YUP --> https://medium.com/@rossbulat/introduction-to-yup-object-validation-in-react-9863af93dc0e
