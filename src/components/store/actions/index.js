@@ -1,5 +1,4 @@
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { addComments } from '@babel/types';
 
 export const LOGIN_USER_START = 'LOGIN_USER_START';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
@@ -32,8 +31,9 @@ export const registerUser = (form) => dispatch => {
         .post('https://saveananimal.herokuapp.com/api/auth/register', form)
         .then(res => {
             console.log('register res', res);
-            localStorage.setItem('token', res.data.payload);
+            localStorage.setItem('token', res.data.token);
             localStorage.setItem('role', res.data.role);
+            localStorage.setItem('id', res.data.id);
             dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data })
         })
         .catch(err => {
@@ -58,5 +58,39 @@ export const createCampaign = (newCampaign) => dispatch => {
         .catch(err => {
             console.log(err.response);
             dispatch({ type: CREATING_CAMPAIGN_FAILURE, payload: err })
+        })
+}
+
+export const DELETE_START = 'DELETE_START'
+export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const DELETE_FAILURE = 'DELETE_FAILURE';
+
+export const deleteCampaign = (id) => dispatch => {
+    dispatch({ type: DELETE_START });
+    console.log('DELETE', id);
+    axiosWithAuth()
+        .delete(`https://saveananimal.herokuapp.com/api/campaigns/${id}`)
+        .then(res => {
+            dispatch({ type: DELETE_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            dispatch({ type: DELETE_FAILURE, payload: err })
+        })
+}
+
+export const EDIT_START = 'EDIT_START'
+export const EDIT_SUCCESS = 'EDIT_SUCCESS';
+export const EDIT_FAILURE = 'EDIT_FAILURE';
+
+export const editCampaign = (id) => dispatch => {
+    dispatch({ type: EDIT_START });
+    console.log('EDIT', id);
+    axiosWithAuth()
+        .put(`https://saveananimal.herokuapp.com/api/campaigns/${id}`)
+        .then(res => {
+            dispatch({ type: EDIT_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            dispatch({ type: EDIT_FAILURE, payload: err })
         })
 }
