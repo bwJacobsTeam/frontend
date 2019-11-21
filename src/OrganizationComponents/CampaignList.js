@@ -5,16 +5,19 @@ import axios from 'axios';
 
 
 
-const CampaignList = () => {
+const CampaignList = (props) => {
     //set initial state using fake data from 'data'file
     const [campaignData, setCampaignData] = useState([])
+    const campId = localStorage.getItem('id');
+    console.log(campId, props);
 
     // set useEffect-- > connect to API
     useEffect(() => {
-        axios.get('https://saveananimal.herokuapp.com/api/campaigns')
+        axios.get(`https://saveananimal.herokuapp.com/api/users/${campId}/campaigns`)
             .then(response => {
+
                 console.log(response.data)
-                setCampaignData(response.data)
+                setCampaignData(response.data);
             })
             .catch(error => {
                 console.log('No campaign data returned', error)

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { deleteCampaign } from '../components/store/actions/index';
+import { deleteCampaign, editCampaign } from '../components/store/actions/index';
 
 const CampaignWrapper = styled.div`
     border: 2px solid blue;
@@ -46,9 +46,15 @@ const CampaignID = (props, campaigns) => {
     console.log(campaigns);
     const { id, campaign_title, description, species, location, urgency, donation_goal, campaign_end } = props;
 
+    const handleEdit = e => {
+        e.preventDefault();
+        props.editCampaign(id)
+    }
+
     const handleDelete = e => {
         e.preventDefault();
-        deleteCampaign(id, campaigns)
+        props.deleteCampaign(id)
+        // props.history.push('/CampaignList');
     }
     console.log('id', id);
     return (
@@ -57,13 +63,13 @@ const CampaignID = (props, campaigns) => {
                 <h2>{campaign_title}</h2>
                 <h3>Description: {description}</h3>
                 <p>Species: {species}</p>
-                <p>Location:{location}</p>
-                <p>Urgency Level{urgency}</p>
-                <p>Donation goal:{donation_goal}</p>
-                <p>Campaign ends:{campaign_end}</p>
-                <p>Total raised:</p>
+                <p>Location: {location}</p>
+                <p>Urgency Level: {urgency}</p>
+                <p>Donation goal: {donation_goal}</p>
+                <p>Campaign ends: {campaign_end}</p>
+                <p>Total raised: </p>
                 <ButtonWrapper>
-                    <Button>Edit</Button>
+                    <Button onClick={handleEdit}>Edit</Button>
                     <ButtonDelete onClick={handleDelete}>Delete</ButtonDelete>
                 </ButtonWrapper>
             </CampaignContainer>
@@ -72,7 +78,7 @@ const CampaignID = (props, campaigns) => {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
+    // console.log(state);
     return {
         campaigns: state.campaigns
     }
@@ -80,5 +86,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { deleteCampaign }
+    { deleteCampaign, editCampaign }
 )(CampaignID);
