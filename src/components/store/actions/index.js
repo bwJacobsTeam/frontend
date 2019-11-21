@@ -82,11 +82,11 @@ export const EDIT_START = 'EDIT_START'
 export const EDIT_SUCCESS = 'EDIT_SUCCESS';
 export const EDIT_FAILURE = 'EDIT_FAILURE';
 
-export const editCampaign = (id) => dispatch => {
+export const editCampaign = (id, editedCampaign) => dispatch => {
     dispatch({ type: EDIT_START });
-    console.log('EDIT', id);
+    console.log('EDIT', id, editedCampaign);
     axiosWithAuth()
-        .put(`https://saveananimal.herokuapp.com/api/campaigns/${id}`)
+        .put(`https://saveananimal.herokuapp.com/api/campaigns/${id}`, editedCampaign)
         .then(res => {
             dispatch({ type: EDIT_SUCCESS, payload: res.data })
         })
