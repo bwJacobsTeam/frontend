@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteCampaign, editCampaign } from '../components/store/actions/index';
+import { deleteCampaign } from '../components/store/actions/index';
 
 const CampaignWrapper = styled.div`
     border: 2px solid blue;
@@ -46,9 +47,8 @@ const CampaignID = (props, campaigns) => {
     console.log(campaigns);
     const { id, campaign_title, description, species, location, urgency, donation_goal, campaign_end } = props;
 
-    const handleEdit = e => {
-        e.preventDefault();
-        props.editCampaign(id)
+    const handleEdit = () => {
+        props.editCampaign(props.id)
     }
 
     const handleDelete = e => {
@@ -69,7 +69,9 @@ const CampaignID = (props, campaigns) => {
                 <p>Campaign ends: {campaign_end}</p>
                 <p>Total raised: </p>
                 <ButtonWrapper>
-                    <Button onClick={handleEdit}>Edit</Button>
+                    <Button><Link to={`/EditCampaign/${props.id}`} onClick={() => {
+                        return handleEdit()
+                    }}>Edit</Link></Button>
                     <ButtonDelete onClick={handleDelete}>Delete</ButtonDelete>
                 </ButtonWrapper>
             </CampaignContainer>
@@ -86,5 +88,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { deleteCampaign, editCampaign }
+    { deleteCampaign }
 )(CampaignID);

@@ -21,7 +21,7 @@ const initialState = {
     isDeleting: false,
     deletingErr: '',
     campaigns: [],
-    currentCampaign: {}
+    currentCampaign: []
 };
 
 const reducer = (state = initialState, action) => {
