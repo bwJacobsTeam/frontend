@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import SupporterCard from '../SupporterComponents/SupporterCard';
 
 const TextInput = styled.input`
-    /* border: 1px solid red; */
     margin: 0 3%;
     height: 40px;
     width: 25%;

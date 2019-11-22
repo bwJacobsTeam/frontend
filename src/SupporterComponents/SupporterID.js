@@ -45,15 +45,16 @@ const TextInput = styled.input`
 `
 
 const SupporterID = (props) => {
-    console.log(props)
+    console.log(props.supporterID)
     const supporterID = props.supporterID
     const id = localStorage.getItem('id')
+    console.log('user ID', id)
     //setup state to hold donation sum/total data --> useState
     const [donationsTotal, setDonationsTotal] = useState();
     const [postDonation, setPostDonation] = useState({
-        supporter_id: id,
+        user_id: 2,
         campaign_id: supporterID,
-        donation_amount: ''
+        donation_amount: 900
     })
     // const donationID = props.match.params.id
 
@@ -89,6 +90,7 @@ const SupporterID = (props) => {
     //setup onChangeHandler to watch donation amount
     const onChangeDonationHandler = (event) => {
         setPostDonation({ ...postDonation, [event.target.name]: event.target.value });
+        console.log(postDonation)
     }
 
 
@@ -111,12 +113,6 @@ const SupporterID = (props) => {
         console.log('this is the post', supporterID)
             .then(response => {
                 console.log(response)
-                // addNewDonation(postDonation);
-                setPostDonation({
-                    supporter_id: id,
-                    campaign_id: supporterID,
-                    donation_amount: ''
-                })
             })
             .catch(error => {
                 console.log('No donations posted', error)

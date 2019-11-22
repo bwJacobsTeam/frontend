@@ -5,7 +5,6 @@ import CampaignID from './CampaignID';
 
 
 const CampaignWrapper = styled.div`
-    border: 2px solid red;
     display: flex;
     justify-content: center;
 `
