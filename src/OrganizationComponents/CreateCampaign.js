@@ -5,7 +5,6 @@ import { createCampaign } from '../components/store/actions/index';
 import * as yup from 'yup';
 
 const FormWrapper = styled.div`
-    /* border: 2px solid red; */
     display: flex;
     flex-wrap: wrap;
     width: 50%;
@@ -14,7 +13,6 @@ const FormWrapper = styled.div`
 `
 
 const FormContainer = styled.div`
-    /* border: 2px solid blue; */
     margin: 2% 0;
     width: 100%;
     display: flex;
@@ -22,7 +20,6 @@ const FormContainer = styled.div`
     align-items: center;    
 `
 const TextInput = styled.input`
-    /* border: 1px solid red; */
     margin: 0 3%;
     height: 40px;
     width: 100%;
@@ -32,7 +29,6 @@ const TextInput = styled.input`
     border: 2px solid lightgrey;
 `
 const SelectInput = styled.select`
-    /* border: 1px solid red; */
     margin: 0 3%;
     height: 40px;
     width: 100%;
@@ -41,7 +37,6 @@ const SelectInput = styled.select`
     color: grey;
 `
 const Label = styled.label`
-    /* border: 1px solid green; */
     width: 27%;
     display: flex;
 `
