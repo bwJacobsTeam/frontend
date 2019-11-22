@@ -5,15 +5,16 @@ import CampaignID from './CampaignID';
 
 
 const CampaignWrapper = styled.div`
-    border: 2px solid red;
     display: flex;
     justify-content: center;
 `
 
 const Campaign = (props) => {
     //Setup 'useState' to set inital data and set the dynamic id
-    const [campaignData, setCampaignData] = useState([]);
+    console.log(props);
     const dataID = props.match.params.id
+    const [campaign, editCampaign] = useState({ id: `${dataID}`, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
+    const [campaignData, setCampaignData] = useState([]);
     console.log('dataID', dataID);
     //use render props to access history,match,location propertes --> specifically 'props.match.params' to capture DYNAMIC ID
 
@@ -45,6 +46,11 @@ const Campaign = (props) => {
                         urgency={item.urgency}
                         donation_goal={item.donation_goal}
                         campaign_end={item.campaign_end}
+
+                        donorID={item.id}
+
+                        editCampaign={editCampaign}
+
                     />)
             })}
         </CampaignWrapper >

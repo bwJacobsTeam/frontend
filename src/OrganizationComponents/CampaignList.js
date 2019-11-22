@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import CampaignCard from './CampaignCard';
-// import { data } from './data';
 import axios from 'axios';
 
 
@@ -27,8 +26,8 @@ const CampaignList = (props) => {
     console.log(campaignData)
     return (
         <div>
-            <h1>Current Campaign --> Displays list of all current campaigns</h1>
-            <h3>All current and campaigns</h3>
+            <h1>Current campaigns created by your organization</h1>
+            <h3>Campaigns searching for donations</h3>
             {campaignData.map((campaign, id) => {
                 return <CampaignCard key={id} campaign={campaign} />;
             })}

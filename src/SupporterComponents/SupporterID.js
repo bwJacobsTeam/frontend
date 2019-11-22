@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { numberLiteralTypeAnnotation } from '@babel/types';
+import * as yup from 'yup';
 
 const DonationWrapper = styled.div`
     border: 2px solid red;
@@ -45,12 +45,19 @@ const TextInput = styled.input`
 `
 
 const SupporterID = (props) => {
-    console.log(props)
-    const { id, campaign_title, description, location, donation_goal, campaign_end } = props;
+    console.log(props.supporterID)
+    const supporterID = props.supporterID
+    const id = localStorage.getItem('id')
+    console.log('user ID', id)
     //setup state to hold donation sum/total data --> useState
     const [donationsTotal, setDonationsTotal] = useState();
+    const [postDonation, setPostDonation] = useState({
+        user_id: 2,
+        campaign_id: supporterID,
+        donation_amount: 900
+    })
     // const donationID = props.match.params.id
-    const supporterID = props.supporterID
+
     console.log(supporterID);
     //useEffect pull in the donation amount from API using DYNAMIC ID for each donation --> https://saveananimal.herokuapp.com/api/campaigns/:id/donations
     useEffect(() => {
@@ -73,19 +80,47 @@ const SupporterID = (props) => {
                 console.log(sumTotal)
 
                 setDonationsTotal(sumTotal);
-
-
-
             })
             .catch(error => {
                 console.log('No donations data returned', error)
             })
     }, [supporterID])
 
-    // set up reducer array method to get sum of donations array.
-    //store in variable and spread current array to add to the donations array
-    //Should give a  current up to date total --> 'total overall donations'
 
+    //setup onChangeHandler to watch donation amount
+    const onChangeDonationHandler = (event) => {
+        setPostDonation({ ...postDonation, [event.target.name]: event.target.value });
+        console.log(postDonation)
+    }
+
+
+    // setup an onSubmit on the 'form' to submit/post to donations api -->axios.get(`https://saveananimal.herokuapp.com/api/campaigns/${supporterID}/donations`)
+    // {
+    //           organization_id: 2,
+    //           campaign_id: 4,
+    //           donation_amount: 10.00
+    //         },
+    //         {
+    //           supporter_id: 2,
+    //           campaign_id: 4,
+    //           donation_amount: 6985
+    //         },
+
+
+    const onSubmitDonation = (event) => {
+        event.preventDefault()
+        axios.post(`https://saveananimal.herokuapp.com/campaigns/${supporterID}/donations/`, postDonation)
+        console.log('this is the post', supporterID)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log('No donations posted', error)
+            })
+    }
+
+
+    const { campaign_title, description, location, donation_goal, campaign_end } = props;
     return (
         <DonationWrapper>
             <DonationContainer>
@@ -96,16 +131,19 @@ const SupporterID = (props) => {
                 <p>Donation goal: ${donation_goal}</p>
                 <p>Campaign ends: {campaign_end}</p>
                 <p>Total raised:$ {donationsTotal}</p>
-                <form>
+                <form onSubmit={onSubmitDonation}>
                     <label htmlFor='donation'>Donation amount:</label>
                     <TextInput
+                        required
                         id='donation'
-                        type='text'
-                        name='donation'
+                        type='number'
+                        min='0'
+                        name='donation_amount'
                         placeholder='$0'
+                        onChange={onChangeDonationHandler}
                     />
+                    <ButtonView type='submit'>Complete donation</ButtonView>
                 </form>
-                <ButtonView>Complete donation</ButtonView>
             </DonationContainer>
         </DonationWrapper>
     )

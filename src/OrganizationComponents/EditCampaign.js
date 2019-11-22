@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { createCampaign } from '../components/store/actions/index';
-import * as yup from 'yup';
+import { editCampaign } from '../components/store/actions/index';
 
 const FormWrapper = styled.div`
+    /* border: 2px solid red; */
     display: flex;
     flex-wrap: wrap;
     width: 50%;
@@ -13,6 +13,7 @@ const FormWrapper = styled.div`
 `
 
 const FormContainer = styled.div`
+    /* border: 2px solid blue; */
     margin: 2% 0;
     width: 100%;
     display: flex;
@@ -20,6 +21,7 @@ const FormContainer = styled.div`
     align-items: center;    
 `
 const TextInput = styled.input`
+    /* border: 1px solid red; */
     margin: 0 3%;
     height: 40px;
     width: 100%;
@@ -29,6 +31,7 @@ const TextInput = styled.input`
     border: 2px solid lightgrey;
 `
 const SelectInput = styled.select`
+    /* border: 1px solid red; */
     margin: 0 3%;
     height: 40px;
     width: 100%;
@@ -37,6 +40,7 @@ const SelectInput = styled.select`
     color: grey;
 `
 const Label = styled.label`
+    /* border: 1px solid green; */
     width: 27%;
     display: flex;
 `
@@ -54,10 +58,9 @@ const CreateButton = styled.button`
 `
 
 //IMPORTANT --> still need to add 'value' properties for each (leaving off for now)
-const CreateCampaign = props => {
-    const [campaign, setCampaign] = useState({ campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' });
-
-    const idVar = localStorage.getItem('id');
+const EditCampaign = (props, campaigns) => {
+    console.log(props);
+    const [campaign, setCampaign] = useState({ id: `${props.match.params.id}`, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' });
 
     console.log(props);
     const changeHandler = e => {
@@ -69,84 +72,17 @@ const CreateCampaign = props => {
         setCampaign({ ...props.currentCampaign })
     }, [props.currentCampaign])
 
-    //can apply form validation inside 'submitForm'
-    const submitForm = e => {
+    const handleEdit = e => {
         e.preventDefault();
-        //add the validation schema to check if campaign or state 'valid'
-        createCampaignSchema.isValid(campaign)
-            .then(valid => {
-                if (valid) {
-                    const newCampaign = {
-                        ...campaign,
-                        user_id: idVar
-                    };
-                    props.createCampaign(newCampaign);
-                    setCampaign({ user_id: idVar, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
-                } else {
-                    alert('Please fill out all fields')
-                }
-            })
-
-
-    };
-    //Eric's current working code just commented out to try to get validation working
-    // const submitForm = e => {
-    //     e.preventDefault();
-    //     const newCampaign = {
-    //         ...campaign,
-    //         user_id: idVar
-    //     };
-    //     props.createCampaign(newCampaign);
-    //     setCampaign({ user_id: idVar, campaign_title: '', description: '', species: '', location: '', urgency: '', donation_goal: '', campaign_end: '' })
-    // };
-
-    //YUP --> https://medium.com/@rossbulat/introduction-to-yup-object-validation-in-react-9863af93dc0e
-    //1. Build validation schema
-    const createCampaignSchema = yup.object().shape({
-        campaign_title: yup
-            .string()
-            .required('Please name your campaign title- max 40 characters')
-            .max(40),
-        description: yup
-            .string()
-            .required('Describe your campaign and why you need donations')
-            .max(280),
-        species: yup
-            .string()
-            .required('What type of animal are you rasing donations for?'),
-        location: yup
-            .string()
-            .required('What city or country is your campaign located?'),
-        urgency: yup
-            .string()
-            .required('Enter an urgency level for your donation'),
-        donation_goal: yup
-            .number()
-            .required('How much money do you want to raise?')
-            .positive()
-            .integer()
-            .min(0),
-        campaign_end: yup
-            .date()
-            .required('When will your campaign end?')
-        // .default(() => (new Date())
-        // )
-    })
-
-    //.2 Validate objects with createCampaignSchema
-    createCampaignSchema.validate(campaign)
-        .catch((error) => {
-            console.log('Yup errors not working', error)
-            // alert(error.message);
-        })
-
+        console.log(campaign);
+        props.editCampaign(props.match.params.id, campaign)
+    }
 
     return (
         <div>
-            <h1>Create a new campaign</h1>
-            <h3>Name your campaign and funding target</h3>
+            <h1>Edit your campaign</h1>
             <FormWrapper>
-                <form onSubmit={submitForm}>
+                <form>
                     <FormContainer>
                         <Label htmlFor='campaign'>Campaign title</Label>
                         <TextInput
@@ -225,7 +161,7 @@ const CreateCampaign = props => {
                         />
                     </FormContainer>
                     <FormContainer>
-                        <CreateButton type='submit'>Save campaign</CreateButton>
+                        <CreateButton onClick={handleEdit}>Edit campaign</CreateButton>
                     </FormContainer>
                 </form>
             </FormWrapper>
@@ -234,14 +170,13 @@ const CreateCampaign = props => {
 };
 
 const mapStateToProps = state => {
-    console.log('form state', state);
+    console.log('form state', state.campaigns);
     return {
-        user: state.currentUser,
-        currentCampaign: state.currentCampaign
+        campaigns: state.campaigns
     }
 }
 
 export default connect(
     mapStateToProps,
-    { createCampaign }
-)(CreateCampaign);
+    { editCampaign }
+)(EditCampaign);

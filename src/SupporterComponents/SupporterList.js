@@ -23,8 +23,8 @@ const SupporterList = () => {
     // console.log(supporterData)
     return (
         <div>
-            <h1>Current Campaign --> Displays list of all current campaigns</h1>
-            <h3>All current and campaigns</h3>
+            <h1>Current conservation campaigns</h1>
+            <h3>Please donate to your favourite cause</h3>
             <SearchForm />
             {/* {supporterData.map((support, id) => {
                 return <SupporterCard key={id} support={support} />;

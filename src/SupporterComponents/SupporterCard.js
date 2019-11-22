@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CampaignWrapper = styled.div`
-    border: 2px solid red;
     width: 50%;
     margin: 2% 0;
     display: flex;
     justify-content: center;
+    margin: auto;
 `
 const CampaignContainer = styled.div`
     border: 2px solid lightgray;
@@ -49,7 +49,6 @@ const SupporterCard = (props) => {
                     <p>Urgency level: {urgency}</p>
                     <p>Donation goal:  {donation_goal}</p>
                     <p>Campaign ends: {campaign_end}</p>
-                    <ButtonView>View campaign</ButtonView>
                 </CampaignContainer>
             </ CampaignWrapper >
         </LinkStyle >

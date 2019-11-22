@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import SupporterCard from '../SupporterComponents/SupporterCard';
 
 const TextInput = styled.input`
-    /* border: 1px solid red; */
     margin: 0 3%;
     height: 40px;
     width: 25%;
@@ -31,7 +30,8 @@ const SearchForm = () => {
                     return (
                         data.location.toLowerCase().includes(query.toLowerCase()) ||
                         data.species.toLowerCase().includes(query.toLowerCase()) ||
-                        data.urgency.toLowerCase().includes(query.toLowerCase())
+                        data.urgency.toLowerCase().includes(query.toLowerCase()) ||
+                        data.description.toLowerCase().includes(query.toLowerCase())
                     )
                 })
                 console.log(result)

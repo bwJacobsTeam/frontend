@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavigationWrapper = styled.div`
-    border: 2px solid red;
     display: flex;
     justify-content: space-evenly;
     padding: 2% 0;
